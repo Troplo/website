@@ -1,0 +1,28 @@
+# Node Modules
+node_modules
+
+# Local ENV files
+.env.local
+.env.*.local
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Editor Directories/Files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.DS_Store
+
+yarn.lock
+
+# Custom
+.env
+config/config.json
