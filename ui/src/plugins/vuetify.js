@@ -1,24 +1,10 @@
-import Vue from 'vue'
-import Vuetify from 'vuetify/lib/framework'
-import colors from "vuetify/es5/util/colors";
+// Styles
+import '@mdi/font/css/materialdesignicons.css'
+import 'vuetify/styles'
 
-Vue.use(Vuetify)
+// Vuetify
+import { createVuetify } from 'vuetify'
 
-export default new Vuetify({
-    theme: {
-        themes: {
-            light: {
-                primary: colors.blue.lighten3,
-                secondary: colors.grey.darken1,
-                accent: colors.shades.black,
-                error: colors.red.accent3,
-                text: "#000000"
-            },
-            dark: {
-                primary: colors.blue,
-                dark: "#1c1c1c",
-                text: "#ffffff"
-            },
-        },
-    }
-});
+export default createVuetify(
+  // https://vuetifyjs.com/en/introduction/why-vuetify/#feature-guides
+)
