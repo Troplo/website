@@ -1,8 +1,13 @@
 <template>
   <div id="header">
+    <v-app-bar color="dark" floating app dense>
+      <v-app-bar-nav-icon v-if="$vuetify.breakpoint.mobile && $store.state.user.username" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+      <v-toolbar-title>{{$store.state.site.route}}<v-app-bar-nav-icon disabled v-if="$store.state.site.release !== 'prod'">{{$store.state.site.release}}</v-app-bar-nav-icon></v-toolbar-title>
+      <v-spacer></v-spacer>
+    </v-app-bar>
     <v-navigation-drawer
         floating
-        color="#1c1c1c"
+        color="dark"
         app
         expand>
       <v-divider></v-divider>
@@ -37,7 +42,7 @@ export default {
     return {
       items: [
         {id: 1, title: "Home", icon: "mdi-home", path: "/"},
-        {id: 1, title: "Watch_Dogs Tools", icon: "mdi-nexus", path: "/"}
+        {id: 2, title: "Projects", icon: "mdi-text-box-multiple", path: "/projects"}
       ]
     }
   },

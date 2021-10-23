@@ -12,11 +12,12 @@ export default new Vuetify({
                 secondary: colors.grey.darken1,
                 accent: colors.shades.black,
                 error: colors.red.accent3,
+                dark: "#151515",
                 text: "#000000"
             },
             dark: {
                 primary: colors.blue,
-                dark: "#1c1c1c",
+                dark: "#151515",
                 text: "#ffffff"
             },
         },
