@@ -43,7 +43,7 @@ export default {
       items: [
         {id: 1, title: "Home", icon: "mdi-home", path: "/"},
         {id: 2, title: "Projects", icon: "mdi-text-box-multiple", path: "/projects"},
-        {id: 3, title: "Contact", icon: "mdi-mail", path: "/contact"}
+        {id: 3, title: "Contact", icon: "mdi-email", path: "/contact"}
       ]
     }
   },

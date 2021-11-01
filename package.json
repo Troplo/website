@@ -1,7 +1,7 @@
 {
-  "name": "jays-host",
+  "name": "troplo-base",
   "version": "1.0.0",
-  "description": "A ShareX photo gallery.",
+  "description": "troplo-base",
   "main": "index.js",
   "scripts": {
     "serve": "nodemon --ignore ./ui/"
