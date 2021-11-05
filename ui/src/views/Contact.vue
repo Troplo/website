@@ -48,6 +48,24 @@
             </v-card-text>
           </v-card>
         </v-col>
+        <v-col md="3">
+          <v-card>
+            <v-card-title class="justify-center">GitHub</v-card-title>
+
+            <v-card-text>
+              <a href="https://github.com/Troplo">Troplo</a>
+            </v-card-text>
+          </v-card>
+        </v-col>
+        <v-col md="3">
+          <v-card>
+            <v-card-title class="justify-center">Gitea</v-card-title>
+
+            <v-card-text>
+              <a href="https://git.troplo.com/Troplo">Troplo</a>
+            </v-card-text>
+          </v-card>
+        </v-col>
       </v-row>
     </v-container>
   </div>

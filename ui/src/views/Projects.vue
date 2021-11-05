@@ -3,8 +3,8 @@
     <v-container>
       <p class="justify-center text-center text-h4">Projects</p>
       <v-row>
-        <v-col md="3" v-for="(project, index) in projects" :key="index">
-          <v-card>
+        <v-col md="3" v-for="(project, index) in getVisible" :key="index">
+          <v-card elevation="8">
             <v-img
                 :src="getImage(project.internalName)"
             ></v-img>
@@ -26,6 +26,7 @@
                 <v-chip
                     v-for="tag in project.tags"
                     :key="tag.id"
+                    :href="tag.link"
                     :color="tag.color"
                 >
                   <v-icon>{{tag.icon}}</v-icon><template v-if="tag.icon">&nbsp;</template>
@@ -114,11 +115,13 @@ export default {
               name: "Vue",
               icon: "mdi-vuejs",
               color: "#42b883",
+              link: "https://vuejs.org"
             },
             {
               internalName: "express",
               name: "Express",
               icon: "mdi-nodejs",
+              link: "https://expressjs.com"
             },
           ],
           description: "A 3D sandbox game, and social avatar platform written in Express and Vue.js.",
@@ -149,11 +152,13 @@ export default {
               name: "Vue",
               icon: "mdi-vuejs",
               color: "#42b883",
+              link: "https://vuejs.org"
             },
             {
               internalName: "express",
               name: "Express",
               icon: "mdi-nodejs",
+              link: "https://expressjs.com"
             },
           ],
           description: "An invite only file uploading service written in Express and Vue.js.",
@@ -184,12 +189,14 @@ export default {
               name: "Vue",
               icon: "mdi-vuejs",
               color: "#42b883",
+              link: "https://vuejs.org"
             },
             {
               internalName: "crystal",
               color: "black",
               name: "Crystal",
               icon: "mdi-language-ruby",
+              link: "https://crystal-lang.org"
             },
           ],
           description: "EPUB reader written in Crystal and Vue.js.",
@@ -215,11 +222,13 @@ export default {
               name: "Vue",
               icon: "mdi-vuejs",
               color: "#42b883",
+              link: "https://vuejs.org"
             },
             {
               internalName: "adonis",
               name: "Adonis.JS",
               icon: "mdi-nodejs",
+              link: "https://adonisjs.com"
             },
           ],
           description: "Helping create the brand new website for Polytoria, a 3D sandbox platform.",
@@ -250,12 +259,14 @@ export default {
               name: "Vue",
               icon: "mdi-vuejs",
               color: "#42b883",
+              link: "https://vuejs.org"
             },
             {
               internalName: "crystal",
               color: "black",
               name: "Crystal",
               icon: "mdi-language-ruby",
+              link: "https://crystal-lang.org"
             },
           ],
           description: "Self hostable, and open source file uploading service created to be performant, and modular.\nName not finalized.",
@@ -293,10 +304,11 @@ export default {
               name: "Vue",
               icon: "mdi-vuejs",
               color: "#42b883",
+              link: "https://vuejs.org"
             },
           ],
           description: "If you want the source code to this website for whatever reason, it is available.",
-          visible: true,
+          visible: false,
           links: [
             {
               name: "Git Repository",
@@ -309,6 +321,11 @@ export default {
           ],
         },
       ]
+    }
+  },
+  computed: {
+    getVisible() {
+      return this.projects.filter(i => i.visible)
     }
   },
   methods: {
