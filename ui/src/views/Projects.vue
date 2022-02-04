@@ -4,7 +4,7 @@
       <p class="justify-center text-center text-h4">Projects</p>
       <v-row>
         <v-col md="3" v-for="(project, index) in getVisible" :key="index">
-          <v-card elevation="8">
+          <v-card class="rounded-xl" elevation="8">
             <v-img
                 :src="getImage(project.internalName)"
             ></v-img>
@@ -54,39 +54,6 @@
     </v-container>
   </div>
 </template>
-
-<style>
-.blob {
-  border-radius: 50%;
-  margin: 6px;
-  height: 20px;
-  width: 20px;
-  transform: scale(1);
-}
-
-.blob.green {
-  background: rgba(51, 217, 178, 1);
-  box-shadow: 0 0 0 0 rgba(51, 217, 178, 1);
-  animation: pulse-green 1.3s infinite;
-}
-
-@keyframes pulse-green {
-  0% {
-    transform: scale(1);
-    box-shadow: 0 0 0 0 rgba(51, 217, 178, 0.7);
-  }
-
-  70% {
-    transform: scale(1);
-    box-shadow: 0 0 0 5px rgba(51, 217, 178, 0);
-  }
-
-  100% {
-    transform: scale(1);
-    box-shadow: 0 0 0 0 rgba(51, 217, 178, 0);
-  }
-}
-</style>
 
 <script>
 export default {
@@ -295,6 +262,12 @@ export default {
           internalName: "troplo-website",
           tags: [
             {
+              internalName: "active",
+              name: "Active",
+              icon: "mdi-check-circle",
+              color: "success"
+            },
+            {
               internalName: "openSource",
               name: "Open Source",
               icon: "mdi-git"
@@ -308,7 +281,7 @@ export default {
             },
           ],
           description: "If you want the source code to this website for whatever reason, it is available.",
-          visible: false,
+          visible: true,
           links: [
             {
               name: "Git Repository",
@@ -318,6 +291,68 @@ export default {
               name: "Website",
               link: "https://troplo.com"
             },
+          ],
+        },
+        {
+          id: 8,
+          name: "Pinnoto Psittacus",
+          internalName: "psittacus",
+          tags: [
+            {
+              internalName: "development",
+              name: "In Development",
+              icon: "mdi-information",
+              color: "info"
+            },
+            {
+              internalName: "vue",
+              name: "Vue",
+              icon: "mdi-vuejs",
+              color: "#42b883",
+              link: "https://vuejs.org"
+            },
+            {
+              internalName: "tauri",
+              name: "Tauri",
+              icon: "mdi-infinity",
+              color: "#24c8db",
+              link: "https://tauri.studio"
+            },
+          ],
+          description: "IDE. Coming soon.",
+          visible: true,
+          links: []
+        },
+        {
+          id: 9,
+          name: "TroploPlex",
+          internalName: "troplo-plex",
+          tags: [
+            {
+              internalName: "active",
+              name: "Active",
+              icon: "mdi-check-circle",
+              color: "success"
+            },
+            {
+              internalName: "openSource",
+              name: "Open Source",
+              icon: "mdi-git"
+            },
+            {
+              internalName: "express",
+              name: "Express",
+              icon: "mdi-nodejs",
+              link: "https://expresjs.com"
+            },
+          ],
+          description: "TroploPlex is a reimplementation of the myPlex API.",
+          visible: true,
+          links: [
+            {
+              name: "Git Repository",
+              link: "https://git.troplo.com/Troplo/Plex"
+            }
           ],
         },
       ]
@@ -339,7 +374,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-
-</style>

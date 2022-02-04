@@ -7,8 +7,26 @@
   </v-app>
 </template>
 <style>
-.troploGradient {
-  font-weight: 500;background: -webkit-radial-gradient(#0179f3, #0190ea);-webkit-background-clip: text;-webkit-text-fill-color: transparent
+.troplo-header {
+  -webkit-font-smoothing: antialiased !important;
+  background: -webkit-radial-gradient(#0179f3, #0190ea) !important;
+}
+.troplo-header-title {
+  -webkit-font-smoothing: antialiased !important;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 450;
+  elevation: 0 !important;
+  font-size: 15rem;
+  font-style: italic;
+  text-shadow: none !important;
+  color: -webkit-radial-gradient(#0179f3, #0190ea) !important;
+  -webkit-background-clip: text
+}
+.troplo-title {
+  font-weight: 500;
+  background: -webkit-radial-gradient(#0179f3, #0190ea);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent
 }
 .theme--dark.v-sheet {
   background-color: #151515 !important;

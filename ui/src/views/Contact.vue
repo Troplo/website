@@ -4,7 +4,9 @@
       <p class="text-h4">Contact</p>
       <v-row>
         <v-col md="3">
-          <v-card>
+          <v-card class="rounded-xl" elevation="8">
+            <br>
+            <v-icon>mdi-email</v-icon>
             <v-card-title class="justify-center">Email</v-card-title>
 
             <v-card-text>
@@ -13,7 +15,9 @@
           </v-card>
         </v-col>
         <v-col md="3">
-          <v-card>
+          <v-card class="rounded-xl" elevation="8">
+            <br>
+            <v-icon>mdi-matrix</v-icon>
             <v-card-title class="justify-center">Matrix</v-card-title>
 
             <v-card-text>
@@ -22,16 +26,22 @@
           </v-card>
         </v-col>
         <v-col md="3">
-          <v-card>
+          <v-card class="rounded-xl" elevation="8">
+            <br>
+            <v-icon>mdi-discord</v-icon>
             <v-card-title class="justify-center">Discord</v-card-title>
 
             <v-card-text>
-              Troplo#8495
+              <a href="https://discord.com/users/692259321907773460">
+                Troplo#8495
+              </a>
             </v-card-text>
           </v-card>
         </v-col>
         <v-col md="3">
-          <v-card>
+          <v-card class="rounded-xl" elevation="8">
+            <br>
+            <v-icon>mdi-twitter</v-icon>
             <v-card-title class="justify-center">Twitter</v-card-title>
 
             <v-card-text>
@@ -40,7 +50,9 @@
           </v-card>
         </v-col>
         <v-col md="3">
-          <v-card>
+          <v-card class="rounded-xl" elevation="8">
+            <br>
+            <v-icon>mdi-send</v-icon>
             <v-card-title class="justify-center">Telegram</v-card-title>
 
             <v-card-text>
@@ -49,7 +61,9 @@
           </v-card>
         </v-col>
         <v-col md="3">
-          <v-card>
+          <v-card class="rounded-xl" elevation="8">
+            <br>
+            <v-icon>mdi-github</v-icon>
             <v-card-title class="justify-center">GitHub</v-card-title>
 
             <v-card-text>
@@ -58,7 +72,9 @@
           </v-card>
         </v-col>
         <v-col md="3">
-          <v-card>
+          <v-card class="rounded-xl" elevation="8">
+            <br>
+            <v-icon>mdi-tea</v-icon>
             <v-card-title class="justify-center">Gitea</v-card-title>
 
             <v-card-text>

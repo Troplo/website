@@ -1,31 +1,18 @@
 <template>
   <div id="home">
     <v-container class="text-center">
-      <v-card elevation="12">
+      <v-card elevation="8" class="troplo-header rounded-xl">
         <v-container>
-          <p class="troploGradient">Troplo</p>
-          <p class="text-h4">Full-stack web developer.</p>
+          <div v-if="!$vuetify.breakpoint.mobile" class="troplo-header-title">Troplo</div>
+          <div v-if="$vuetify.breakpoint.mobile" class="troplo-header-title" style="background: -webkit-radial-gradient(#0179f3, #0190ea);">T</div>
         </v-container>
       </v-card>
     </v-container>
   </div>
 </template>
 
-<style>
-.troploGradient{
-  font-size: 300px;
-  font-style: italic;
-  background:-webkit-radial-gradient(#0179f3, #0190ea);
-  -webkit-background-clip:text
-}
-
-.normal {
-  font-color: #ffffff
-}
-</style>
-
 <script>
-  export default {
-    name: 'Home',
-  }
+export default {
+  name: 'Home',
+}
 </script>

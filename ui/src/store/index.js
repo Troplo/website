@@ -6,8 +6,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     site: {
-      name: 'Troplo\'s Website',
-      route: ''
+      name: "Troplo's Website",
+      route: "Home"
     }
   },
   mutations: {
