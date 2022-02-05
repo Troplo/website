@@ -28,6 +28,8 @@
                     :key="tag.id"
                     :href="tag.link"
                     :color="tag.color"
+                    disabled
+                    style="opacity: 1"
                 >
                   <v-icon>{{tag.icon}}</v-icon><template v-if="tag.icon">&nbsp;</template>
                   {{tag.name}}
@@ -343,7 +345,7 @@ export default {
               internalName: "express",
               name: "Express",
               icon: "mdi-nodejs",
-              link: "https://expresjs.com"
+              link: "https://expressjs.com"
             },
           ],
           description: "TroploPlex is a reimplementation of the myPlex API.",
