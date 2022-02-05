@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-container>
-      <v-card>
+      <v-card elevation="8" class="rounded-xl">
         <v-container class="text-center">
           <p class="text-h4">Not Found.</p>
           <p class="subtitle">This route does not exist.</p>
@@ -18,6 +18,4 @@ export default {
 }
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
