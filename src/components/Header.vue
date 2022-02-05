@@ -19,7 +19,7 @@
           :key="item.id"
           class="ml-1"
           :to="item.path"
-          style="text-transform: unset !important;"
+          style="text-transform: unset !important"
           :disabled="item.disabled"
         >
           <v-list-item-title>{{ item.title }}</v-list-item-title>
@@ -57,7 +57,11 @@
             <v-list-item-title>{{ item.title }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item link @click="$vuetify.theme.dark = !$vuetify.theme.dark" v-if="false">
+        <v-list-item
+          link
+          @click="$vuetify.theme.dark = !$vuetify.theme.dark"
+          v-if="false"
+        >
           <v-list-item-icon>
             <v-icon>{{
               $vuetify.theme.dark ? "mdi-lightbulb-on" : "mdi-lightbulb-outline"
