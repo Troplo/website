@@ -1,7 +1,7 @@
 <template>
   <div id="projects">
     <v-container>
-      <p class="justify-center text-center text-h4">Projects</p>
+      <p class="justify-center text-center text-h4">My Projects</p>
       <v-row>
         <v-col md="3" v-for="(project, index) in getVisible" :key="index">
           <v-card class="rounded-xl" elevation="8">
@@ -10,7 +10,7 @@
             <v-card-title>{{ project.name }}</v-card-title>
 
             <v-card-text>
-              <div>{{ project.description }}</div>
+              <span style="white-space: pre-line; overflow-wrap: anywhere;">{{ project.description }}</span>
             </v-card-text>
 
             <v-divider class="mx-4"></v-divider>
@@ -20,12 +20,12 @@
             <v-card-text>
               <v-chip-group column>
                 <v-chip
-                  v-for="tag in project.tags"
-                  :key="tag.id"
-                  :href="tag.link"
-                  :color="tag.color"
-                  disabled
-                  style="opacity: 1"
+                    v-for="tag in project.tags"
+                    :key="tag.id"
+                    :href="tag.link"
+                    :color="tag.color"
+                    disabled
+                    style="opacity: 1"
                 >
                   <v-icon>{{ tag.icon }}</v-icon
                   ><template v-if="tag.icon">&nbsp;</template>
@@ -38,11 +38,11 @@
 
             <v-card-actions v-if="project.links.length">
               <v-btn
-                v-for="link in project.links"
-                :key="link.name"
-                color="blue"
-                text
-                :href="link.link"
+                  v-for="link in project.links"
+                  :key="link.name"
+                  color="blue"
+                  text
+                  :href="link.link"
               >
                 {{ link.name }}
               </v-btn>
@@ -72,11 +72,6 @@ export default {
               icon: "mdi-alert-circle"
             },
             {
-              internalName: "openSource",
-              name: "Open Source",
-              icon: "mdi-git"
-            },
-            {
               internalName: "vue",
               name: "Vue",
               icon: "mdi-vuejs",
@@ -91,14 +86,9 @@ export default {
             }
           ],
           description:
-            "A 3D sandbox game, and social avatar platform written in Express and Vue.js.",
+              "A 3D sandbox game, and social avatar platform written in Express and Vue.js.",
           visible: true,
-          links: [
-            {
-              name: "Git Repository",
-              link: "https://git.troplo.com/Kaverti/website"
-            }
-          ]
+          links: []
         },
         {
           id: 2,
@@ -112,11 +102,6 @@ export default {
               color: "success"
             },
             {
-              internalName: "freelance",
-              name: "Freelance",
-              icon: "mdi-currency-usd"
-            },
-            {
               internalName: "vue",
               name: "Vue",
               icon: "mdi-vuejs",
@@ -131,7 +116,7 @@ export default {
             }
           ],
           description:
-            "An invite only file uploading service written in Express and Vue.js.",
+              "An invite only file uploading service written in Express and Vue.js.",
           visible: true,
           links: [
             {
@@ -206,7 +191,7 @@ export default {
             }
           ],
           description:
-            "Helping create the brand new website for Polytoria, a 3D sandbox platform.",
+              "Helping create the brand new website for Polytoria, a 3D sandbox platform.",
           visible: true,
           links: [
             {
@@ -247,7 +232,7 @@ export default {
             }
           ],
           description:
-            "Self hostable, and open source file uploading service created to be performant, and modular.\nName not finalized.",
+              "Open source file hosting service which aims to be performant, and modular.\nName not finalized.",
           visible: true,
           links: {}
         },
@@ -292,12 +277,12 @@ export default {
             }
           ],
           description:
-            "If you want the source code to this website for whatever reason, it is available.",
+              "The website you are viewing right now.",
           visible: true,
           links: [
             {
               name: "Git Repository",
-              link: "https://git.troplo.com/Troplo/website-new"
+              link: "https://github.com/Troplo/website"
             },
             {
               name: "Website",
@@ -317,6 +302,11 @@ export default {
               color: "info"
             },
             {
+              internalName: "openSource",
+              name: "Open Source",
+              icon: "mdi-git"
+            },
+            {
               internalName: "vue",
               name: "Vue",
               icon: "mdi-vuejs",
@@ -334,57 +324,25 @@ export default {
           description: "Code editor. Coming soon.",
           visible: true,
           links: []
-        },
-        {
-          id: 9,
-          name: "TroploPlex",
-          internalName: "troplo-plex",
-          tags: [
-            {
-              internalName: "active",
-              name: "Active",
-              icon: "mdi-check-circle",
-              color: "success"
-            },
-            {
-              internalName: "openSource",
-              name: "Open Source",
-              icon: "mdi-git"
-            },
-            {
-              internalName: "express",
-              name: "Express",
-              icon: "mdi-nodejs",
-              link: "https://expressjs.com"
-            }
-          ],
-          description: "TroploPlex is a reimplementation of the myPlex API.",
-          visible: true,
-          links: [
-            {
-              name: "Git Repository",
-              link: "https://git.troplo.com/Troplo/Plex"
-            }
-          ]
         }
-      ]
-    }
-  },
-  computed: {
-    getVisible() {
-      return this.projects.filter((i) => i.visible)
-    }
-  },
-  methods: {
-    getImage(image) {
-      try {
-        return require("../assets/images/" + image + ".png")
-      } catch {
-        return (
+  ]
+  }
+},
+computed: {
+  getVisible() {
+    return this.projects.filter((i) => i.visible)
+  }
+},
+methods: {
+  getImage(image) {
+    try {
+      return require("../assets/images/" + image + ".png")
+    } catch {
+      return (
           "https://dummyimage.com/1920x1080/151515/ffffff.png&text=" + image
-        )
-      }
+      )
     }
   }
+}
 }
 </script>

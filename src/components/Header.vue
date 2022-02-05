@@ -17,6 +17,7 @@
           text
           v-for="item in items"
           :key="item.id"
+          class="ml-1"
           :to="item.path"
           style="text-transform: unset !important;"
           :disabled="item.disabled"
@@ -25,6 +26,7 @@
         </v-btn>
         <v-btn
           v-if="false"
+          class="ml-1"
           text
           @click="$vuetify.theme.dark = !$vuetify.theme.dark"
         >
