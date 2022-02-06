@@ -4,7 +4,7 @@
       <p class="justify-center text-center text-h4">My Projects</p>
       <v-row>
         <v-col md="3" v-for="(project, index) in getVisible" :key="index">
-          <v-card class="rounded-xl" elevation="8">
+          <v-card class="rounded-xl troplo-p" elevation="8">
             <v-img :src="getImage(project.internalName)"></v-img>
 
             <v-card-title>{{ project.name }}</v-card-title>
@@ -27,10 +27,11 @@
                   :href="tag.link"
                   :color="tag.color"
                   :disabled="!tag.link"
+                  class="troplo-p"
                   :text-color="tag.textColor || 'white'"
                   style="opacity: 1"
                 >
-                  <v-img v-if="tag.icon === 'crystal'" src="../assets/icons/crystal_icon.svg" width="30" height="30"></v-img>
+                  <v-img v-if="tag.icon === 'crystal'" src="../assets/icons/crystal-icon.svg" width="30" height="30"></v-img>
                   <v-icon v-if="tag.icon !== 'crystal'">{{ tag.icon }}</v-icon>
                   <template v-if="tag.icon">&nbsp;</template>
                   {{ tag.name }}
@@ -329,7 +330,41 @@ export default {
           description: "Code editor. Coming soon.",
           visible: true,
           links: []
-        }
+        },
+        {
+          id: 10,
+          name: "Vixlatio",
+          internalName: "vixlatio",
+          tags: [
+            {
+              internalName: "active",
+              name: "Active",
+              icon: "mdi-check-circle",
+              color: "success"
+            },
+            {
+              internalName: "vue",
+              name: "Vue",
+              icon: "mdi-vuejs",
+              color: "#42b883",
+              link: "https://vuejs.org"
+            },
+            {
+              internalName: "express",
+              name: "Express",
+              icon: "mdi-nodejs",
+              link: "https://expressjs.com"
+            }
+          ],
+          description: "Developer for Vixlatio, a blazing fast gaming platform that is powered by the creativity of its users.",
+          visible: true,
+          links: [
+            {
+              name: "Website",
+              link: "https://vixlatio.com"
+            }
+          ]
+        },
       ]
     }
   },

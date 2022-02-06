@@ -7,13 +7,17 @@
   </v-app>
 </template>
 <style>
+.troplo-nav {
+  font-family: 'Roboto', sans-serif;
+}
+
 .troplo-header {
   -webkit-font-smoothing: antialiased !important;
   background: -webkit-radial-gradient(#0179f3, #0190ea) !important;
 }
 .troplo-header-title {
   -webkit-font-smoothing: antialiased !important;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Montserrat", sans-serif !important;
   font-weight: 450;
   elevation: 0 !important;
   font-size: 15rem;
