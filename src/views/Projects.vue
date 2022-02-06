@@ -136,10 +136,10 @@ export default {
           internalName: "mira",
           tags: [
             {
-              internalName: "development",
-              name: "In Development",
-              icon: "mdi-information",
-              color: "info"
+              internalName: "active",
+              name: "Active",
+              icon: "mdi-check-circle",
+              color: "success"
             },
             {
               internalName: "openSource",
@@ -177,10 +177,10 @@ export default {
           internalName: "polytoria",
           tags: [
             {
-              internalName: "development",
-              name: "In Development",
-              icon: "mdi-information",
-              color: "info"
+              internalName: "active",
+              name: "Active",
+              icon: "mdi-check-circle",
+              color: "success"
             },
             {
               internalName: "vue",
@@ -249,11 +249,11 @@ export default {
           internalName: "flowinity",
           tags: [
             {
-              internalName: "development",
-              name: "In Development",
-              icon: "mdi-information",
-              color: "info"
-            }
+              internalName: "development-halted",
+              name: "Halted",
+              icon: "mdi-pause-octagon",
+              color: "warning"
+            },
           ],
           description: "A tech blog.",
           visible: true,
@@ -302,10 +302,10 @@ export default {
           internalName: "psittacus",
           tags: [
             {
-              internalName: "development",
-              name: "In Development",
-              icon: "mdi-information",
-              color: "info"
+              internalName: "development-halted",
+              name: "Halted",
+              icon: "mdi-pause-octagon",
+              color: "warning"
             },
             {
               internalName: "openSource",
