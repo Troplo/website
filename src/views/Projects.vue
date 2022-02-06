@@ -344,7 +344,7 @@ export default {
         return require("../assets/images/" + image + ".png")
       } catch {
         return (
-          "https://dummyimage.com/1920x1080/151515/ffffff.png&text=" + image
+          "https://dummyimage.com/3840x2035/151515/ffffff.png&text=" + image
         )
       }
     }
