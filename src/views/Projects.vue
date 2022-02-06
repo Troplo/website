@@ -26,11 +26,13 @@
                   :key="tag.id"
                   :href="tag.link"
                   :color="tag.color"
-                  disabled
+                  :disabled="!tag.link"
+                  :text-color="tag.textColor || 'white'"
                   style="opacity: 1"
                 >
-                  <v-icon>{{ tag.icon }}</v-icon
-                  ><template v-if="tag.icon">&nbsp;</template>
+                  <v-img v-if="tag.icon === 'crystal'" src="../assets/icons/crystal_icon.svg" width="30" height="30"></v-img>
+                  <v-icon v-if="tag.icon !== 'crystal'">{{ tag.icon }}</v-icon>
+                  <template v-if="tag.icon">&nbsp;</template>
                   {{ tag.name }}
                 </v-chip>
               </v-chip-group>
@@ -129,7 +131,7 @@ export default {
         },
         {
           id: 3,
-          name: "Pinnoto Mira",
+          name: "Mira",
           internalName: "mira",
           tags: [
             {
@@ -152,9 +154,10 @@ export default {
             },
             {
               internalName: "crystal",
-              color: "black",
+              color: "white",
+              textColor: "black",
               name: "Crystal",
-              icon: "mdi-language-ruby",
+              icon: "crystal",
               link: "https://crystal-lang.org"
             }
           ],
@@ -204,7 +207,7 @@ export default {
         },
         {
           id: 5,
-          name: "Pinnoto Berri",
+          name: "Berri",
           internalName: "berri",
           tags: [
             {
@@ -227,9 +230,10 @@ export default {
             },
             {
               internalName: "crystal",
-              color: "black",
+              color: "white",
               name: "Crystal",
-              icon: "mdi-language-ruby",
+              textColor: "black",
+              icon: "crystal",
               link: "https://crystal-lang.org"
             }
           ],
@@ -256,7 +260,7 @@ export default {
         },
         {
           id: 7,
-          name: "Troplo Website",
+          name: "Troplo's Website",
           internalName: "troplo-website",
           tags: [
             {
@@ -293,7 +297,7 @@ export default {
         },
         {
           id: 8,
-          name: "Pinnoto Psittacus",
+          name: "Psittacus",
           internalName: "psittacus",
           tags: [
             {
