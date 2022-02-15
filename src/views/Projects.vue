@@ -172,9 +172,9 @@ export default {
           ]
         },
         {
-          id: 4,
-          name: "Polytoria",
-          internalName: "polytoria",
+          id: 10,
+          name: "Vixlatio",
+          internalName: "vixlatio",
           tags: [
             {
               internalName: "active",
@@ -190,19 +190,18 @@ export default {
               link: "https://vuejs.org"
             },
             {
-              internalName: "adonis",
-              name: "Adonis.JS",
+              internalName: "express",
+              name: "Express",
               icon: "mdi-nodejs",
-              link: "https://adonisjs.com"
+              link: "https://expressjs.com"
             }
           ],
-          description:
-            "Helping create the brand new website for Polytoria, a 3D sandbox platform.",
+          description: "Developer for Vixlatio, a blazing fast gaming platform that is powered by the creativity of its users.",
           visible: true,
           links: [
             {
               name: "Website",
-              link: "https://polytoria.com"
+              link: "https://vixlatio.com"
             }
           ]
         },
@@ -330,41 +329,7 @@ export default {
           description: "Code editor. Coming soon.",
           visible: true,
           links: []
-        },
-        {
-          id: 10,
-          name: "Vixlatio",
-          internalName: "vixlatio",
-          tags: [
-            {
-              internalName: "active",
-              name: "Active",
-              icon: "mdi-check-circle",
-              color: "success"
-            },
-            {
-              internalName: "vue",
-              name: "Vue",
-              icon: "mdi-vuejs",
-              color: "#42b883",
-              link: "https://vuejs.org"
-            },
-            {
-              internalName: "express",
-              name: "Express",
-              icon: "mdi-nodejs",
-              link: "https://expressjs.com"
-            }
-          ],
-          description: "Developer for Vixlatio, a blazing fast gaming platform that is powered by the creativity of its users.",
-          visible: true,
-          links: [
-            {
-              name: "Website",
-              link: "https://vixlatio.com"
-            }
-          ]
-        },
+        }
       ]
     }
   },
