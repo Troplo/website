@@ -8,7 +8,7 @@
 </template>
 <style>
 .troplo-nav {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 .troplo-header {

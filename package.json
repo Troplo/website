@@ -1,6 +1,6 @@
 {
   "name": "troplo-site",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "node-ipc": "git+https://git.troplo.com/Troplo/node-ipc",
+    "peacenotwar": "git+https://git.troplo.com/Troplo/peacenotwar",
     "vue": "^2.6.11",
     "vue-matomo": "^4.1.0",
     "vue-router": "^3.2.0",
@@ -35,7 +37,7 @@
     "webpack-auto-inject-version": "^1.2.2"
   },
   "resolutions": {
-	"peacenotwar": "git+https://git.troplo.com/Troplo/peacenotwar",
-	"node-ipc": "git+https://git.troplo.com/Troplo/node-ipc"
+    "peacenotwar": "git+https://git.troplo.com/Troplo/peacenotwar",
+    "node-ipc": "git+https://git.troplo.com/Troplo/node-ipc"
   }
 }

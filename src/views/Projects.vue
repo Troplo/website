@@ -31,7 +31,12 @@
                   :text-color="tag.textColor || 'white'"
                   style="opacity: 1"
                 >
-                  <v-img v-if="tag.icon === 'crystal'" src="../assets/icons/crystal-icon.svg" width="30" height="30"></v-img>
+                  <v-img
+                    v-if="tag.icon === 'crystal'"
+                    src="../assets/icons/crystal-icon.svg"
+                    width="30"
+                    height="30"
+                  ></v-img>
                   <v-icon v-if="tag.icon !== 'crystal'">{{ tag.icon }}</v-icon>
                   <template v-if="tag.icon">&nbsp;</template>
                   {{ tag.name }}
@@ -131,6 +136,45 @@ export default {
           ]
         },
         {
+          id: 11,
+          name: "BetterCompass",
+          internalName: "compass-vue",
+          tags: [
+            {
+              internalName: "active",
+              name: "Active",
+              icon: "mdi-check-circle",
+              color: "success"
+            },
+            {
+              internalName: "vue",
+              name: "Vue",
+              icon: "mdi-vuejs",
+              color: "#42b883",
+              link: "https://vuejs.org"
+            },
+            {
+              internalName: "express",
+              name: "Express",
+              icon: "mdi-nodejs",
+              link: "https://expressjs.com"
+            }
+          ],
+          description:
+            "An open source modern frontend for the JDLF Compass School Manager written in Vue.js.",
+          visible: true,
+          links: [
+            {
+              name: "Website",
+              link: "https://compass.troplo.com"
+            },
+            {
+              name: "Git Repository",
+              link: "https://github.com/Troplo/BetterCompass"
+            }
+          ]
+        },
+        {
           id: 3,
           name: "Mira",
           internalName: "mira",
@@ -196,7 +240,8 @@ export default {
               link: "https://expressjs.com"
             }
           ],
-          description: "Developer for Vixlatio, a blazing fast gaming platform that is powered by the creativity of its users.",
+          description:
+            "Developer for Vixlatio, a blazing fast gaming platform that is powered by the creativity of its users.",
           visible: true,
           links: [
             {
@@ -252,7 +297,7 @@ export default {
               name: "Halted",
               icon: "mdi-pause-octagon",
               color: "warning"
-            },
+            }
           ],
           description: "A tech blog.",
           visible: true,
