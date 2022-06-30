@@ -45,8 +45,8 @@ export default {
           id: 2,
           icon: "mdi-matrix",
           title: "Matrix",
-          displayName: "@troplo:troplo.com",
-          url: "https://matrix.to/#/@troplo:troplo.com?via=troplo.com"
+          displayName: "@troplo:flowinity.com",
+          url: "https://matrix.to/#/@troplo:flowinity.com?via=flowinity.com"
         },
         {
           id: 3,

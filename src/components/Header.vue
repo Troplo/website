@@ -9,7 +9,7 @@
         class="troplo-title"
         @click="$router.push('/')"
         style="cursor: pointer"
-        >Troplo</v-toolbar-title
+        >Troplo's Website</v-toolbar-title
       >
       <v-spacer></v-spacer>
       <v-list v-if="!$vuetify.breakpoint.mobile">
@@ -81,12 +81,6 @@ export default {
       sidebar: false,
       items: [
         { id: 1, title: "Home", icon: "mdi-home", path: "/" },
-        {
-          id: 2,
-          title: "Projects",
-          icon: "mdi-text-box-multiple",
-          path: "/projects"
-        },
         { id: 3, title: "Contact", icon: "mdi-email", path: "/contact" }
       ]
     }

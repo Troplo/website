@@ -4,7 +4,7 @@ import router from "./router"
 import vuetify from "./plugins/vuetify"
 import store from "./store"
 import VueMatomo from "vue-matomo"
-
+import "./assets/style.css"
 Vue.config.productionTip = false
 Vue.use(VueMatomo, {
   // Configure your matomo server and site by providing

@@ -1,11 +1,35 @@
 <template>
   <div id="projects">
-    <v-container>
+    <v-container :fluid="$vuetify.breakpoint.lgAndDown">
+      <v-card elevation="8" class="troplo-header rounded-xl text-center" v-if="false">
+        <v-container>
+          <div v-if="!$vuetify.breakpoint.mobile" class="troplo-header-title">
+            Troplo
+          </div>
+          <div
+              v-if="$vuetify.breakpoint.mobile"
+              class="troplo-header-title"
+              style="background: -webkit-radial-gradient(#0179f3, #0190ea)"
+          >
+            T
+          </div>
+        </v-container>
+      </v-card>
       <p class="justify-center text-center text-h4">My Projects</p>
       <v-row>
         <v-col md="3" v-for="(project, index) in getVisible" :key="index">
           <v-card class="rounded-xl troplo-p" elevation="8">
-            <v-img :src="getImage(project.internalName)"></v-img>
+            <v-hover v-slot="{ hover }">
+                <v-img :alt="'Image of ' + project.name" :src="getImage(project.internalName)">
+                  <a :href="getImage(project.internalName)" target="_blank">
+                    <v-fade-transition v-if="hover">
+                      <v-overlay absolute>
+                        <v-icon large>mdi-open-in-new</v-icon>
+                      </v-overlay>
+                    </v-fade-transition>
+                  </a>
+                </v-img>
+            </v-hover>
 
             <v-card-title>{{ project.name }}</v-card-title>
 
@@ -70,7 +94,7 @@ export default {
   data() {
     return {
       projects: [
-        {
+     /*   {
           id: 1,
           name: "Kaverti",
           internalName: "kaverti",
@@ -99,10 +123,10 @@ export default {
             "A 3D sandbox game, and social avatar platform written in Express and Vue.js.",
           visible: true,
           links: []
-        },
+        },*/
         {
           id: 2,
-          name: "Jays.host",
+          name: "Jet.pics",
           internalName: "proj01",
           tags: [
             {
@@ -131,7 +155,7 @@ export default {
           links: [
             {
               name: "Website",
-              link: "https://jays.host"
+              link: "https://jet.pics"
             }
           ]
         },
