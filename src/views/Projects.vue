@@ -143,6 +143,13 @@ export default {
               link: "https://vuejs.org"
             },
             {
+              internalName: "vuetify",
+              name: "Vuetify",
+              icon: "mdi-vuetify",
+              link: "https://vuetify.com",
+              color: "#2196F3"
+            },
+            {
               internalName: "express",
               name: "Express",
               icon: "mdi-nodejs",
@@ -156,6 +163,52 @@ export default {
             {
               name: "Website",
               link: "https://jet.pics"
+            }
+          ]
+        },
+        {
+          id: 12,
+          name: "Colubrina",
+          internalName: "colubrina",
+          tags: [
+            {
+              internalName: "active",
+              name: "Active",
+              icon: "mdi-check-circle",
+              color: "success"
+            },
+            {
+              internalName: "vue",
+              name: "Vue",
+              icon: "mdi-vuejs",
+              color: "#42b883",
+              link: "https://vuejs.org"
+            },
+            {
+              internalName: "vuetify",
+              name: "Vuetify",
+              icon: "mdi-vuetify",
+              link: "https://vuetify.com",
+              color: "#2196F3"
+            },
+            {
+              internalName: "express",
+              name: "Express",
+              icon: "mdi-nodejs",
+              link: "https://expressjs.com"
+            },
+          ],
+          description:
+              "Colubrina - a simple open source chat platform written in Vue, Vuetify, NodeJS, and Socket.io.",
+          visible: true,
+          links: [
+            {
+              name: "Website",
+              link: "https://colubrina.troplo.com"
+            },
+            {
+              name: "Git Repository",
+              link: "https://github.com/Troplo/Colubrina"
             }
           ]
         },
@@ -176,6 +229,13 @@ export default {
               icon: "mdi-vuejs",
               color: "#42b883",
               link: "https://vuejs.org"
+            },
+            {
+              internalName: "vuetify",
+              name: "Vuetify",
+              icon: "mdi-vuetify",
+              link: "https://vuetify.com",
+              color: "#2196F3"
             },
             {
               internalName: "express",
@@ -208,11 +268,6 @@ export default {
               name: "Active",
               icon: "mdi-check-circle",
               color: "success"
-            },
-            {
-              internalName: "openSource",
-              name: "Open Source",
-              icon: "mdi-git"
             },
             {
               internalName: "vue",
@@ -280,15 +335,10 @@ export default {
           internalName: "berri",
           tags: [
             {
-              internalName: "development",
-              name: "In Development",
-              icon: "mdi-information",
-              color: "info"
-            },
-            {
-              internalName: "openSource",
-              name: "Open Source",
-              icon: "mdi-git"
+              internalName: "development-halted",
+              name: "Halted",
+              icon: "mdi-pause-octagon",
+              color: "warning"
             },
             {
               internalName: "vue",
@@ -308,6 +358,43 @@ export default {
           ],
           description:
             "Open source file hosting service which aims to be performant, and modular.\nName not finalized.",
+          visible: true,
+          links: {}
+        },
+        {
+          id: 13,
+          name: "Kansas",
+          internalName: "kansas",
+          tags: [
+            {
+              internalName: "development-halted",
+              name: "Halted",
+              icon: "mdi-pause-octagon",
+              color: "warning"
+            },
+            {
+              internalName: "vue",
+              name: "Vue",
+              icon: "mdi-vuejs",
+              color: "#42b883",
+              link: "https://vuejs.org"
+            },
+            {
+              internalName: "vuetify",
+              name: "Vuetify",
+              icon: "mdi-vuetify",
+              link: "https://vuetify.com",
+              color: "#2196F3"
+            },
+            {
+              internalName: "express",
+              name: "Express",
+              icon: "mdi-nodejs",
+              link: "https://expressjs.com"
+            }
+          ],
+          description:
+              "Open source project tracking software written in Vue.js.",
           visible: true,
           links: {}
         },
@@ -339,17 +426,19 @@ export default {
               color: "success"
             },
             {
-              internalName: "openSource",
-              name: "Open Source",
-              icon: "mdi-git"
-            },
-            {
               internalName: "vue",
               name: "Vue",
               icon: "mdi-vuejs",
               color: "#42b883",
               link: "https://vuejs.org"
-            }
+            },
+            {
+              internalName: "vuetify",
+              name: "Vuetify",
+              icon: "mdi-vuetify",
+              link: "https://vuetify.com",
+              color: "#2196F3"
+            },
           ],
           description: "The website you are viewing right now.",
           visible: true,
@@ -374,11 +463,6 @@ export default {
               name: "Halted",
               icon: "mdi-pause-octagon",
               color: "warning"
-            },
-            {
-              internalName: "openSource",
-              name: "Open Source",
-              icon: "mdi-git"
             },
             {
               internalName: "vue",
