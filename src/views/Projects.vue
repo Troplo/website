@@ -218,10 +218,10 @@ export default {
           internalName: "compass-vue",
           tags: [
             {
-              internalName: "active",
-              name: "Active",
-              icon: "mdi-check-circle",
-              color: "success"
+              internalName: "inactive",
+              name: "Discontinued",
+              color: "error",
+              icon: "mdi-alert-circle"
             },
             {
               internalName: "vue",
@@ -254,7 +254,7 @@ export default {
             },
             {
               name: "Git Repository",
-              link: "https://github.com/Troplo/BetterCompass"
+              link: "https://github.com/ElectricS01/BetterCompass"
             }
           ]
         },
@@ -294,7 +294,7 @@ export default {
             }
           ]
         },
-        {
+        /*{
           id: 10,
           name: "Vixlatio",
           internalName: "vixlatio",
@@ -328,7 +328,7 @@ export default {
               link: "https://vixlatio.com"
             }
           ]
-        },
+        },*/
         {
           id: 5,
           name: "Berri",
