@@ -41,19 +41,26 @@ export default {
           displayName: "troplo@troplo.com",
           url: "mailto:troplo@troplo.com"
         },
-        {
+        /*{
           id: 2,
           icon: "mdi-matrix",
           title: "Matrix",
           displayName: "@troplo:flowinity.com",
           url: "https://matrix.to/#/@troplo:flowinity.com?via=flowinity.com"
-        },
+        },*/
         {
           id: 3,
           icon: "mdi-discord",
           title: "Discord",
           displayName: "Troplo#8495",
           url: "https://discord.com/users/692259321907773460"
+        },
+        {
+          id: 9,
+          icon: "mdi-mastodon",
+          title: "Mastodon",
+          displayName: "@Troplo@social.troplo.com",
+          url: "https://social.troplo.com/@Troplo"
         },
         {
           id: 4,
@@ -96,4 +103,8 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+a {
+  text-decoration: none;
+}
+</style>

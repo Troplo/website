@@ -17,7 +17,7 @@
       </v-card>
       <p class="justify-center text-center text-h4">My Projects</p>
       <v-row>
-        <v-col md="3" v-for="(project, index) in getVisible" :key="index">
+        <v-col lg="3" v-for="(project, index) in getVisible" :key="index">
           <v-card class="rounded-xl troplo-p" elevation="8">
             <v-hover v-slot="{ hover }">
                 <v-img :alt="'Image of ' + project.name" :src="getImage(project.internalName)">
@@ -214,7 +214,7 @@ export default {
               link: "https://colubrina.troplo.com"
             },
             {
-              name: "Git Repository",
+              name: "GitHub",
               link: "https://github.com/Troplo/Colubrina"
             }
           ]
@@ -260,10 +260,59 @@ export default {
               link: "https://compass.troplo.com"
             },
             {
-              name: "Git Repository",
+              name: "GitHub",
               link: "https://github.com/ElectricS01/BetterCompass"
             }
           ]
+        },
+        {
+          id: 14,
+          name: "GeoGuess",
+          internalName: "geoguess",
+          description: "Contributed changes & fixes to the open source geography game GeoGuess.",
+          visible: true,
+          links: [
+            {
+              name: "My Instance",
+              link: "https://geo.troplo.com"
+            },
+            {
+              name: "GitHub",
+              link: "https://github.com/GeoGuess/GeoGuess"
+            },
+            {
+              name: "Website",
+              link: "https://geoguess.games"
+            }
+          ],
+          tags: [
+            {
+              internalName: "active",
+              name: "Active",
+              icon: "mdi-check-circle",
+              color: "success"
+            },
+            {
+              internalName: "vue",
+              name: "Vue",
+              icon: "mdi-vuejs",
+              color: "#42b883",
+              link: "https://vuejs.org"
+            },
+            {
+              internalName: "vuetify",
+              name: "Vuetify",
+              icon: "mdi-vuetify",
+              link: "https://vuetify.com",
+              color: "#2196F3"
+            },
+            {
+              internalName: "firebase",
+              name: "Google APIs",
+              icon: "mdi-firebase",
+              link: "https://firebase.com"
+            }
+          ],
         },
         {
           id: 3,
@@ -296,7 +345,7 @@ export default {
           visible: true,
           links: [
             {
-              name: "Git Repository",
+              name: "GitHub",
               link: "https://github.com/pinnoto/mira"
             }
           ]
@@ -451,7 +500,7 @@ export default {
           visible: true,
           links: [
             {
-              name: "Git Repository",
+              name: "GitHub",
               link: "https://github.com/Troplo/website"
             },
             {
