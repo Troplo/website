@@ -126,7 +126,7 @@ export default {
         },*/
         {
           id: 2,
-          name: "Jet.pics",
+          name: "TroploPrivateUploader (TPU)",
           internalName: "proj01",
           tags: [
             {
@@ -154,6 +154,13 @@ export default {
               name: "Express",
               icon: "mdi-nodejs",
               link: "https://expressjs.com"
+            },
+            {
+              internalName: "typescript",
+              name: "TypeScript",
+              icon: "mdi-language-typescript",
+              link: "https://typescriptlang.org",
+              color: "#007acc"
             }
           ],
           description:
@@ -162,7 +169,7 @@ export default {
           links: [
             {
               name: "Website",
-              link: "https://jet.pics"
+              link: "https://images.flowinity.com"
             }
           ]
         },

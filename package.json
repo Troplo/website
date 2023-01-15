@@ -1,10 +1,10 @@
 {
   "name": "troplo-site",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "serve": "NODE_OPTIONS=--openssl-legacy-provider vue-cli-service serve",
+    "build": "NODE_OPTIONS=--openssl-legacy-provider vue-cli-service build",
     "lint": "vue-cli-service lint",
     "postinstall": "patch-package"
   },
