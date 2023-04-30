@@ -164,7 +164,7 @@ export default {
             }
           ],
           description:
-            "An invite only file uploading service written in Express and Vue.js.",
+            "The versatile image hosting service, now for everyone with a unique feature-set.",
           visible: true,
           links: [
             {
