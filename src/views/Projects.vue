@@ -179,10 +179,10 @@ export default {
           internalName: "colubrina",
           tags: [
             {
-              internalName: "active",
-              name: "Active",
-              icon: "mdi-check-circle",
-              color: "success"
+              internalName: "inactive",
+              name: "Discontinued",
+              color: "error",
+              icon: "mdi-alert-circle"
             },
             {
               internalName: "vue",
@@ -206,7 +206,7 @@ export default {
             },
           ],
           description:
-              "Colubrina - a simple open source chat platform written in Vue, Vuetify, NodeJS, and Socket.io.",
+              "NOTE: Colubrina is now part of TroploPrivateUploader as TPU Communications.\n\nColubrina - a simple open source chat platform written in Vue, Vuetify, NodeJS, and Socket.io.",
           visible: true,
           links: [
             {
