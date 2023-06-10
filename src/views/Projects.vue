@@ -146,7 +146,7 @@ export default {
               internalName: "vuetify",
               name: "Vuetify",
               icon: "mdi-vuetify",
-              link: "https://vuetify.com",
+              link: "https://vuetifyjs.com",
               color: "#2196F3"
             },
             {
@@ -169,7 +169,11 @@ export default {
           links: [
             {
               name: "Website",
-              link: "https://images.flowinity.com"
+              link: "https://privateuploader.com"
+            },
+            {
+              name: "GitHub",
+              link: "https://github.com/PrivateUploader/PrivateUploader"
             }
           ]
         },
@@ -195,7 +199,7 @@ export default {
               internalName: "vuetify",
               name: "Vuetify",
               icon: "mdi-vuetify",
-              link: "https://vuetify.com",
+              link: "https://vuetifyjs.com",
               color: "#2196F3"
             },
             {
@@ -241,7 +245,7 @@ export default {
               internalName: "vuetify",
               name: "Vuetify",
               icon: "mdi-vuetify",
-              link: "https://vuetify.com",
+              link: "https://vuetifyjs.com",
               color: "#2196F3"
             },
             {
@@ -261,7 +265,7 @@ export default {
             },
             {
               name: "GitHub",
-              link: "https://github.com/ElectricS01/BetterCompass"
+              link: "https://github.com/Troplo/BetterCompass"
             }
           ]
         },
@@ -303,7 +307,7 @@ export default {
               internalName: "vuetify",
               name: "Vuetify",
               icon: "mdi-vuetify",
-              link: "https://vuetify.com",
+              link: "https://vuetifyjs.com",
               color: "#2196F3"
             },
             {
@@ -439,7 +443,7 @@ export default {
               internalName: "vuetify",
               name: "Vuetify",
               icon: "mdi-vuetify",
-              link: "https://vuetify.com",
+              link: "https://vuetifyjs.com",
               color: "#2196F3"
             },
             {
@@ -492,7 +496,7 @@ export default {
               internalName: "vuetify",
               name: "Vuetify",
               icon: "mdi-vuetify",
-              link: "https://vuetify.com",
+              link: "https://vuetifyjs.com",
               color: "#2196F3"
             },
           ],
