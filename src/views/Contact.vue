@@ -52,7 +52,7 @@ export default {
           id: 3,
           icon: "mdi-discord",
           title: "Discord",
-          displayName: "Troplo#8495",
+          displayName: "@troplo",
           url: "https://discord.com/users/692259321907773460"
         },
         {
