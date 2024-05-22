@@ -13,7 +13,8 @@
         >
           <v-card class="rounded-xl" elevation="8">
             <br />
-            <v-icon>{{ contact.icon }}</v-icon>
+            <v-icon v-if="contact.icon">{{ contact.icon }}</v-icon>
+            <FlowinityLogo style="width:24px" v-else/>
             <v-card-title class="justify-center">{{
               contact.title
             }}</v-card-title>
@@ -29,11 +30,20 @@
 </template>
 
 <script>
+import FlowinityLogo from "@/components/FlowinityLogo.vue"
+
 export default {
   name: "Contact",
   data() {
     return {
       contacts: [
+        {
+          id: 0,
+          icon: null,
+          title: "Flowinity",
+          displayName: "Troplo",
+          url: "https://flowinity.com/u/Troplo"
+        },
         {
           id: 1,
           icon: "mdi-email",
@@ -89,16 +99,12 @@ export default {
           title: "Gitea",
           displayName: "Troplo",
           url: "https://git.troplo.com/Troplo"
-        },
-        {
-          id: 7,
-          icon: "mdi-gitlab",
-          title: "GitLab",
-          displayName: "Troplo",
-          url: "https://gitlab.com/Troplo"
         }
       ]
     }
+  },
+  components: {
+    FlowinityLogo
   }
 }
 </script>

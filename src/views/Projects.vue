@@ -126,7 +126,7 @@ export default {
         },*/
         {
           id: 2,
-          name: "TroploPrivateUploader (TPU)",
+          name: "Flowinity",
           internalName: "proj01",
           tags: [
             {
@@ -164,16 +164,16 @@ export default {
             }
           ],
           description:
-            "The versatile image hosting service, now for everyone with a unique feature-set.",
+            "The versatile online social and collaborative platform.",
           visible: true,
           links: [
             {
               name: "Website",
-              link: "https://privateuploader.com"
+              link: "https://flowinity.com"
             },
             {
               name: "GitHub",
-              link: "https://github.com/PrivateUploader/PrivateUploader"
+              link: "https://github.com/Flowinity/Flowinity"
             }
           ]
         },
@@ -210,7 +210,7 @@ export default {
             },
           ],
           description:
-              "NOTE: Colubrina is now part of TroploPrivateUploader as TPU Communications.\n\nColubrina - a simple open source chat platform written in Vue, Vuetify, NodeJS, and Socket.io.",
+              "NOTE: Colubrina is now part of Flowinity as Flowinity Communications.\n\nColubrina - a simple open source chat platform written in Vue, Vuetify, NodeJS, and Socket.io.",
           visible: true,
           links: [
             {
@@ -457,7 +457,7 @@ export default {
               "Open source project tracking software written in Vue.js.",
           visible: true,
           links: {}
-        },
+        },/*
         {
           id: 6,
           name: "Flowinity",
@@ -473,7 +473,7 @@ export default {
           description: "A tech blog.",
           visible: true,
           links: {}
-        },
+        },*/
         {
           id: 7,
           name: "Troplo's Website",

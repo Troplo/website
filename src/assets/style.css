@@ -19,10 +19,17 @@
     -webkit-text-fill-color: transparent;
 }
 .theme--dark.v-sheet {
+    background-color: #151515 ;
+    border-color: #151515;
+    color: #ffffff;
+}
+
+#header .theme--dark.v-sheet {
     background-color: #151515 !important;
     border-color: #151515 !important;
     color: #ffffff;
 }
+
 .card {
     overflow: hidden;
 }
