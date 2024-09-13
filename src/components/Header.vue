@@ -1,9 +1,9 @@
 <template>
   <div id="header">
-    <v-toolbar dark>
+    <v-toolbar color="surface">
       <v-app-bar-nav-icon
         @click.stop="sidebar = !sidebar"
-        v-if="$vuetify.breakpoint.mobile"
+        v-if="display.mobile.value"
       ></v-app-bar-nav-icon>
       <v-toolbar-title
         class="troplo-title"
@@ -12,12 +12,11 @@
         >Troplo's Website</v-toolbar-title
       >
       <v-spacer></v-spacer>
-      <v-list v-if="!$vuetify.breakpoint.mobile">
+      <div class="d-flex mr-4" style="gap: 4px" v-if="!display.mobile.value">
         <v-btn
           text
           v-for="item in items"
           :key="item.id"
-          class="ml-1"
           :to="item.path"
           style="text-transform: unset !important"
           :disabled="item.disabled"
@@ -36,59 +35,47 @@
             }}</v-icon>
           </v-list-item-title>
         </v-btn>
-      </v-list>
+      </div>
     </v-toolbar>
     <v-navigation-drawer
       floating
       color="dark"
       app
       v-model="sidebar"
-      v-if="$vuetify.breakpoint.mobile"
+      v-if="display.mobile.value"
       expand
     >
       <v-divider></v-divider>
       <v-list nav dense>
         <v-list-item v-for="item in items" :key="item.id" link :to="item.path">
-          <v-list-item-icon>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-item-icon>
+          <v-icon>{{ item.icon }}</v-icon>
 
-          <v-list-item-content>
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
-          </v-list-item-content>
+          <v-list-item-title>{{ item.title }}</v-list-item-title>
         </v-list-item>
-        <v-list-item
-          link
-          @click="$vuetify.theme.dark = !$vuetify.theme.dark"
-          v-if="false"
-        >
-          <v-list-item-icon>
-            <v-icon>{{
-              $vuetify.theme.dark ? "mdi-lightbulb-on" : "mdi-lightbulb-outline"
-            }}</v-icon>
-          </v-list-item-icon>
+        <v-list-item link>
+          <v-icon>{{
+            theme.current.value.dark
+              ? "mdi-lightbulb-on"
+              : "mdi-lightbulb-outline"
+          }}</v-icon>
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
   </div>
 </template>
 
-<script>
-export default {
-  name: "Header",
-  data() {
-    return {
-      sidebar: false,
-      items: [
-        { id: 1, title: "Home", icon: "mdi-home", path: "/" },
-        { id: 3, title: "Contact", icon: "mdi-email", path: "/contact" }
-      ]
-    }
-  },
-  mounted() {
-    this.$vuetify.theme = { dark: true }
-  }
-}
+<script setup lang="ts">
+import { useDisplay, useTheme } from "vuetify"
+import { ref } from "vue"
+
+const display = useDisplay()
+const theme = useTheme()
+
+const sidebar = ref(false)
+const items = ref([
+  { id: 1, title: "Home", icon: "mdi-home", path: "/" },
+  { id: 3, title: "Contact", icon: "mdi-email", path: "/contact" }
+])
 </script>
 
 <style scoped></style>
