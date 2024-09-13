@@ -1,9 +1,24 @@
 <template>
   <v-app>
-    <v-main v-if="outages.length">
-      <v-alert class="mb-0 p-0" text color="red" :value="true" tile icon="mdi-alert-circle">
-        You might be currently experiencing problems with:
-        {{outageName}}.
+    <v-main>
+      <v-alert
+        v-if="outages.length"
+        class="mb-0 p-0"
+        text
+        color="red"
+        :value="true"
+        tile
+        icon="mdi-alert-circle"
+      >
+        <div class="d-flex justify-space-between align-center justify-center">
+          <span>
+            You might be currently experiencing problems with:
+            {{ outageName }}.
+          </span>
+          <v-btn href="https://status.troplo.com" small color="red" text
+            >Learn more</v-btn
+          >
+        </div>
       </v-alert>
       <Header></Header>
       <router-view />

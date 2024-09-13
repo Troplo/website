@@ -14,7 +14,7 @@
           <v-card class="rounded-xl" elevation="8">
             <br />
             <v-icon v-if="contact.icon">{{ contact.icon }}</v-icon>
-            <FlowinityLogo style="width:24px" v-else/>
+            <FlowinityLogo style="width: 24px" v-else />
             <v-card-title class="justify-center">{{
               contact.title
             }}</v-card-title>
@@ -62,7 +62,7 @@ export default {
           id: 3,
           icon: "mdi-discord",
           title: "Discord",
-          displayName: "Troplo#8495",
+          displayName: "@troplo",
           url: "https://discord.com/users/692259321907773460"
         },
         {
