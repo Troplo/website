@@ -11,9 +11,11 @@
             :key="banner.id"
             :value="true"
             variant="tonal"
-            :type="banner.bannerType"
+            :type="banner.bannerType || undefined"
             :icon="
-              banner.bannerType === 'error' ? 'mdi-alert-circle' : undefined
+              banner.bannerType === BannerType.Error
+                ? 'mdi-alert-circle'
+                : undefined
             "
             tile
             :id="`banner-${banner.id}`"
@@ -95,6 +97,7 @@ import { useDisplay } from "vuetify"
 import { onMounted, ref } from "vue"
 import { useAnnouncementsStore } from "@/stores/announcements.store"
 import { useRouter } from "vue-router"
+import { BannerType } from "@/gql/graphql"
 
 const display = useDisplay()
 const announcementsStore = useAnnouncementsStore()

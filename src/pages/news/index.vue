@@ -1,5 +1,14 @@
 <template>
   <v-container max-width="1400">
+    <v-skeleton-loader
+      v-if="loading"
+      :loading="loading"
+      class="rounded-xl mb-4"
+      aspect-ratio="16/9"
+      v-for="i in 5"
+      :key="i"
+      type="article"
+    />
     <div v-if="!loading" class="d-flex flex-column" style="gap: 12px">
       <v-card
         v-for="announcement in news"
@@ -35,6 +44,16 @@
           </div>
         </div>
       </v-card>
+      <div
+        v-if="!news.length && !loading"
+        class="text-h4 text-center d-flex flex-column justify-center align-center"
+      >
+        <v-icon size="48">mdi-information</v-icon>
+        <span> There are no posts right now. </span>
+        <v-card-subtitle>
+          Check back later for the latest updates and announcements.
+        </v-card-subtitle>
+      </div>
     </div>
   </v-container>
 </template>
