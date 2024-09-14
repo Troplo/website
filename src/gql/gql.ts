@@ -13,7 +13,8 @@ import type { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-
  * Therefore it is highly recommended to use the babel or swc plugin for production.
  */
 const documents = {
-    "\n  query Announcements($input: AnnouncementsInput!) {\n    announcements(input: $input) {\n      id\n      title\n      description\n      createdAt\n      updatedAt\n      banner\n      bannerText\n      bannerExpiry\n      bannerType\n      flowinityUserId\n    }\n  }\n": types.AnnouncementsDocument,
+    "\n  query Announcement($announcementId: String!) {\n    announcement(id: $announcementId) {\n      id\n      title\n      description\n      content\n      createdAt\n      updatedAt\n      bannerExpiry\n      image\n      flowinityUser {\n        username\n        avatar\n      }\n    }\n  }\n": types.AnnouncementDocument,
+    "\n  query Announcements($input: AnnouncementsInput!) {\n    announcements(input: $input) {\n      id\n      title\n      description\n      createdAt\n      updatedAt\n      image\n      banner\n      bannerText\n      bannerExpiry\n      bannerType\n      flowinityUserId\n    }\n  }\n": types.AnnouncementsDocument,
     "\n  query StatusPage {\n    status {\n      name\n      status\n    }\n  }\n": types.StatusPageDocument,
 };
 
@@ -34,7 +35,11 @@ export function graphql(source: string): unknown;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n  query Announcements($input: AnnouncementsInput!) {\n    announcements(input: $input) {\n      id\n      title\n      description\n      createdAt\n      updatedAt\n      banner\n      bannerText\n      bannerExpiry\n      bannerType\n      flowinityUserId\n    }\n  }\n"): (typeof documents)["\n  query Announcements($input: AnnouncementsInput!) {\n    announcements(input: $input) {\n      id\n      title\n      description\n      createdAt\n      updatedAt\n      banner\n      bannerText\n      bannerExpiry\n      bannerType\n      flowinityUserId\n    }\n  }\n"];
+export function graphql(source: "\n  query Announcement($announcementId: String!) {\n    announcement(id: $announcementId) {\n      id\n      title\n      description\n      content\n      createdAt\n      updatedAt\n      bannerExpiry\n      image\n      flowinityUser {\n        username\n        avatar\n      }\n    }\n  }\n"): (typeof documents)["\n  query Announcement($announcementId: String!) {\n    announcement(id: $announcementId) {\n      id\n      title\n      description\n      content\n      createdAt\n      updatedAt\n      bannerExpiry\n      image\n      flowinityUser {\n        username\n        avatar\n      }\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  query Announcements($input: AnnouncementsInput!) {\n    announcements(input: $input) {\n      id\n      title\n      description\n      createdAt\n      updatedAt\n      image\n      banner\n      bannerText\n      bannerExpiry\n      bannerType\n      flowinityUserId\n    }\n  }\n"): (typeof documents)["\n  query Announcements($input: AnnouncementsInput!) {\n    announcements(input: $input) {\n      id\n      title\n      description\n      createdAt\n      updatedAt\n      image\n      banner\n      bannerText\n      bannerExpiry\n      bannerType\n      flowinityUserId\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

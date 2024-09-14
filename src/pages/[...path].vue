@@ -5,7 +5,9 @@
         <v-container class="text-center">
           <p class="text-h4">Not Found.</p>
           <p class="subtitle">This route does not exist.</p>
-          <v-btn text @click="$router.push('/')">Go Home</v-btn>
+          <v-btn variant="tonal" class="mt-2" @click="$router.push('/')"
+            >Go Home</v-btn
+          >
         </v-container>
       </v-card>
     </v-container>

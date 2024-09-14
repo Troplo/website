@@ -1,20 +1,97 @@
 <template>
   <div id="projects">
-    <v-container :width="display.lgAndDown.value ? '100%' : '70%'">
+    <v-carousel
+      :style="`height: calc(100vh - ${announcementsStore.navbarOffset}px)`"
+      hide-delimiters
+      cycle
+      :show-arrows="!display.mobile.value"
+      :interval="7000"
+    >
+      <v-carousel-item
+        v-for="(project, index) in carousel"
+        :key="index"
+        gradient="to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)"
+        :src="project.src"
+        cover
+        class="position-relative"
+      >
+        <div
+          class="d-flex flex-column align-center justify-center w-100 h-100 cursor-auto"
+        >
+          <v-card
+            class="d-flex flex-column align-center justify-center rounded-xl pb-4 px-4"
+            style="background: rgb(18, 18, 18, 0)"
+            :elevation="0"
+          >
+            <v-card-title
+              class="text-h3 d-flex justify-center"
+              style="text-shadow: 0 0 10px black"
+            >
+              <component
+                :is="project.logo"
+                v-if="project.logo"
+                style="width: 52px"
+                class="mr-4"
+              />
+              {{ project.name }}
+            </v-card-title>
+
+            <p class="text-center" style="text-shadow: 0 0 10px black">
+              {{ project.description }}
+            </p>
+            <v-btn
+              v-for="link in project.links"
+              :key="link.name"
+              color="blue"
+              class="mt-4"
+              :variant="link.link || link.click ? 'elevated' : 'text'"
+              :href="link.link"
+              :ripple="false"
+              target="_blank"
+              @click="link.click && link.click()"
+            >
+              <v-icon class="mr-2" v-if="link.link"> mdi-open-in-new </v-icon>
+              {{ link.name }}
+            </v-btn>
+          </v-card>
+        </div>
+      </v-carousel-item>
+      <v-btn
+        icon
+        class="position-absolute mb-6"
+        style="bottom: 0; left: 50%; transform: translateX(-50%)"
+        @click="scrollToProjects"
+      >
+        <v-icon>mdi-arrow-down</v-icon>
+      </v-btn>
+    </v-carousel>
+    <v-container id="projects-list" :fluid="true">
       <p class="justify-center text-center text-h4 mb-4">My Projects</p>
       <v-row>
-        <v-col lg="3" v-for="(project, index) in getVisible" :key="index">
-          <v-card class="rounded-xl troplo-p" elevation="8">
+        <v-col
+          v-for="(project, index) in getVisible"
+          :key="index"
+          cols="12"
+          md="6"
+          lg="3"
+          xl="4"
+        >
+          <v-card
+            class="rounded-xl troplo-p"
+            elevation="8"
+            :color="highlight === project.id ? '#303030' : ''"
+          >
             <v-hover>
               <template v-slot:default="{ isHovering, props }">
                 <v-img
+                  style="min-height: 100px"
                   v-bind="props"
                   :alt="'Image of ' + project.name"
                   :src="getImage(project.internalName)"
                 >
                   <a :href="getImage(project.internalName)" target="_blank">
                     <v-overlay
-                      :model-value="isHovering"
+                      :model-value="isHovering!"
                       class="align-center justify-center"
                       :contained="true"
                       scrim="#000000"
@@ -24,6 +101,18 @@
                       >
                     </v-overlay>
                   </a>
+                  <template #placeholder>
+                    <v-row
+                      align="center"
+                      class="fill-height ma-0"
+                      justify="center"
+                    >
+                      <v-progress-circular
+                        color="grey lighten-5"
+                        indeterminate
+                      />
+                    </v-row>
+                  </template>
                 </v-img>
               </template>
             </v-hover>
@@ -52,38 +141,21 @@
             <v-card-title class="text-wrap">Information</v-card-title>
 
             <v-card-text class="d-flex flex-wrap text-wrap" style="gap: 6px">
-              <v-chip
-                v-for="tag in project.tags"
-                :key="tag.id"
-                :href="tag.link"
-                :color="tag.color"
-                :disabled="!tag.link"
-                class="troplo-p"
-                :text-color="tag.textColor || 'white'"
-                style="opacity: 1"
-              >
-                <v-img
-                  v-if="tag.icon === 'crystal'"
-                  src="../assets/icons/crystal-icon.svg"
-                  width="30"
-                  height="30"
-                ></v-img>
-                <v-icon v-if="tag.icon !== 'crystal'">{{ tag.icon }}</v-icon>
-                <template v-if="tag.icon">&nbsp;</template>
-                {{ tag.name }}
-              </v-chip>
+              <ChipTag v-for="tag in project.tags" :key="tag.name" :tag="tag" />
             </v-card-text>
 
             <v-divider v-if="project.links.length" class="mx-4"></v-divider>
 
-            <v-card-actions v-if="project.links.length">
+            <v-card-actions v-if="project.links.length" class="mx-2">
               <v-btn
                 v-for="link in project.links"
                 :key="link.name"
                 color="blue"
-                text
+                variant="text"
+                target="_blank"
                 :href="link.link"
               >
+                <v-icon v-if="link.icon" class="mr-1">{{ link.icon }}</v-icon>
                 {{ link.name }}
               </v-btn>
             </v-card-actions>
@@ -97,8 +169,13 @@
 <script setup lang="ts">
 import { computed, ref } from "vue"
 import { useDisplay } from "vuetify"
+import { useAnnouncementsStore } from "@/stores/announcements.store"
+import ChipTag from "@/components/ChipTag.vue"
+import FlowinityLogo from "@/components/FlowinityLogo.vue"
 
 const display = useDisplay()
+
+const highlight = ref<number | null>(null)
 
 enum Tags {
   Active,
@@ -113,8 +190,11 @@ enum Tags {
   Inactive,
   DevelopmentHalted,
   Crystal,
-  NoLongerAffiliated
+  NoLongerAffiliated,
+  New
 }
+
+const announcementsStore = useAnnouncementsStore()
 
 const tags = {
   [Tags.Active]: {
@@ -126,8 +206,7 @@ const tags = {
     name: "Vue",
     icon: "mdi-vuejs",
     color: "#42b883",
-    link: "https://vuejs.org",
-    textColor: "black"
+    link: "https://vuejs.org"
   },
   [Tags.Vuetify]: {
     name: "Vuetify",
@@ -162,12 +241,14 @@ const tags = {
   [Tags.GraphQL]: {
     name: "GraphQL",
     icon: "mdi-graphql",
-    link: "https://graphql.org"
+    link: "https://graphql.org",
+    color: "#E10098"
   },
   [Tags.Firebase]: {
     name: "Google APIs",
     icon: "mdi-firebase",
-    link: "https://firebase.com"
+    link: "https://firebase.com",
+    color: "#FFCA28"
   },
   [Tags.Inactive]: {
     name: "Discontinued",
@@ -181,7 +262,6 @@ const tags = {
   },
   [Tags.Crystal]: {
     color: "white",
-    textColor: "black",
     name: "Crystal",
     icon: "crystal",
     link: "https://crystal-lang.org"
@@ -189,9 +269,74 @@ const tags = {
   [Tags.NoLongerAffiliated]: {
     name: "No longer affiliated",
     icon: "mdi-help-circle",
-    color: "indigo"
+    color: "yellow"
+  },
+  [Tags.New]: {
+    name: "New",
+    icon: "mdi-new-box",
+    color: "success"
   }
-}
+} as Record<
+  Tags,
+  {
+    name: string
+    link?: string
+    color?: string
+    icon?: string
+  }
+>
+
+const carousel = [
+  {
+    src: "/images/flowinity-update-comms.png",
+    name: "Flowinity",
+    logo: FlowinityLogo,
+    description: "The versatile online social and collaborative platform.",
+    links: [
+      {
+        name: "Get Started",
+        link: "https://flowinity.com/home?mtm_campaign=troplo-carousel"
+      }
+    ],
+    tags: []
+  },
+  {
+    src: "/images/flowforms.png",
+    name: "FlowForms",
+    description: "The free flow chart form builder.",
+    tags: [tags[Tags.New]],
+    links: [
+      {
+        name: "Learn More",
+        click: () => {
+          scrollToProjects()
+          setTimeout(() => {
+            highlight.value = 13
+          }, 500)
+          setTimeout(() => {
+            highlight.value = null
+          }, 1500)
+        }
+      }
+    ]
+  }
+] as {
+  src: string
+  name: string
+  description: string
+  logo?: any
+  tags: {
+    name: string
+    link?: string
+    color?: string
+    icon?: string
+  }[]
+  links: {
+    name: string
+    link?: string
+    click?: () => void
+  }[]
+}[]
 
 const projects = [
   {
@@ -211,11 +356,13 @@ const projects = [
     links: [
       {
         name: "Website",
-        link: "https://flowinity.com"
+        link: "https://flowinity.com/home?mtm_campaign=troplo-projects",
+        icon: "mdi-web"
       },
       {
         name: "GitHub",
-        link: "https://github.com/Flowinity/Flowinity"
+        link: "https://github.com/Flowinity/Flowinity",
+        icon: "mdi-github"
       }
     ]
   },
@@ -225,7 +372,7 @@ const projects = [
     release: "2024",
     internalName: "flowforms",
     tags: [
-      tags[Tags.Active],
+      tags[Tags.New],
       tags[Tags.Vue],
       tags[Tags.Vuetify],
       tags[Tags.GraphQL],
@@ -235,12 +382,14 @@ const projects = [
     visible: true,
     links: [
       {
-        name: "Website",
-        link: "https://flowforms.troplo.com"
+        name: "Early Access",
+        link: "https://flowforms.troplo.com",
+        icon: "mdi-web"
       },
       {
-        name: "GitHub",
-        link: "https://github.com/Troplo/FlowForms"
+        name: "Provide Feedback",
+        link: "https://flowforms.troplo.com/form/9ab39eb2-6fa0-41b1-b669-d665281b29b1",
+        icon: "mdi-message-alert"
       }
     ]
   },
@@ -256,11 +405,13 @@ const projects = [
     links: [
       {
         name: "Google Play",
-        link: "https://play.google.com/store/apps/details?id=com.troplo.privateuploader"
+        link: "https://play.google.com/store/apps/details?id=com.troplo.privateuploader",
+        icon: "mdi-google-play"
       },
       {
         name: "GitHub",
-        link: "https://github.com/Flowinity/Android"
+        link: "https://github.com/Flowinity/Android",
+        icon: "mdi-github"
       }
     ]
   },
@@ -280,12 +431,9 @@ const projects = [
     release: "2022",
     links: [
       {
-        name: "Website",
-        link: "https://colubrina.troplo.com"
-      },
-      {
         name: "GitHub",
-        link: "https://github.com/Troplo/Colubrina"
+        link: "https://github.com/Troplo/Colubrina",
+        icon: "mdi-github"
       }
     ]
   },
@@ -306,11 +454,13 @@ const projects = [
     links: [
       {
         name: "Website",
-        link: "https://compass.troplo.com"
+        link: "https://compass.troplo.com",
+        icon: "mdi-web"
       },
       {
         name: "GitHub",
-        link: "https://github.com/Troplo/BetterCompass"
+        link: "https://github.com/Troplo/BetterCompass",
+        icon: "mdi-github"
       }
     ]
   },
@@ -331,15 +481,18 @@ const projects = [
     links: [
       {
         name: "My Instance",
-        link: "https://geo.troplo.com"
+        link: "https://geo.troplo.com",
+        icon: "mdi-web"
       },
       {
         name: "GitHub",
-        link: "https://github.com/GeoGuess/GeoGuess"
+        link: "https://github.com/GeoGuess/GeoGuess",
+        icon: "mdi-github"
       },
       {
         name: "Website",
-        link: "https://geoguess.games"
+        link: "https://geoguess.games",
+        icon: "mdi-web"
       }
     ]
   },
@@ -354,7 +507,8 @@ const projects = [
     links: [
       {
         name: "GitHub",
-        link: "https://github.com/pinnoto/mira"
+        link: "https://github.com/pinnoto/mira",
+        icon: "mdi-github"
       }
     ]
   },
@@ -363,7 +517,7 @@ const projects = [
     name: "Vixlatio",
     internalName: "vixlatio",
     release: "2022",
-    tags: [tags[Tags.Active], tags[Tags.Vue], tags[Tags.Express]],
+    tags: [tags[Tags.NoLongerAffiliated], tags[Tags.Vue], tags[Tags.Express]],
     description:
       "Developer for Vixlatio, a blazing fast gaming platform that is powered by the creativity of its users.",
     visible: true,
@@ -395,11 +549,13 @@ const projects = [
     links: [
       {
         name: "GitHub",
-        link: "https://github.com/Troplo/website"
+        link: "https://github.com/Troplo/website",
+        icon: "mdi-github"
       },
       {
         name: "Website",
-        link: "https://troplo.com"
+        link: "https://troplo.com",
+        icon: "mdi-web"
       }
     ]
   },
@@ -418,8 +574,17 @@ const projects = [
 
 const getVisible = computed(() => projects.filter((i) => i.visible))
 
-const getImage = (image) => {
+const getImage = (image: string) => {
   return `/images/${image}.png`
+}
+
+const scrollToProjects = () => {
+  const element = document.getElementById("projects-list")!
+  const y =
+    element.getBoundingClientRect().top +
+    window.scrollY -
+    announcementsStore.navbarOffset
+  window.scrollTo({ top: y + 6, behavior: "smooth" })
 }
 </script>
 

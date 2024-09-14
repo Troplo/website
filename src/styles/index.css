@@ -71,3 +71,8 @@
 {
     border-color: hsla(0, 0%, 100%, 0.12) !important;
 }
+
+.v-btn {
+    letter-spacing: inherit !important;
+    text-transform: inherit !important;
+}

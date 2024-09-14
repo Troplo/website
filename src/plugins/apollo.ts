@@ -2,7 +2,7 @@ import { ApolloClient, createHttpLink, InMemoryCache } from "@apollo/client"
 
 const httpLink = createHttpLink({
   // You should use an absolute URL here
-  uri: "/graphql"
+  uri: import.meta.env.DEV ? "/graphql" : "https://api.troplo.com/graphql"
 })
 
 // Cache implementation

@@ -13,8 +13,18 @@
         >
           <v-card class="rounded-xl" elevation="8">
             <br />
-            <v-icon v-if="contact.icon">{{ contact.icon }}</v-icon>
-            <FlowinityLogo style="width: 24px" v-else />
+            <v-icon
+              v-if="contact.icon !== 'flowinity' && contact.icon !== 'discord'"
+              >{{ contact.icon }}</v-icon
+            >
+            <FlowinityLogo
+              style="width: 24px"
+              v-else-if="contact.icon === 'flowinity'"
+            />
+            <DiscordLogo
+              style="width: 24px"
+              v-else-if="contact.icon === 'discord'"
+            />
             <v-card-title class="justify-center">{{
               contact.title
             }}</v-card-title>
@@ -31,6 +41,7 @@
 
 <script>
 import FlowinityLogo from "@/components/FlowinityLogo.vue"
+import DiscordLogo from "@/components/DiscordLogo.vue"
 
 export default {
   name: "Contact",
@@ -39,7 +50,7 @@ export default {
       contacts: [
         {
           id: 0,
-          icon: null,
+          icon: "flowinity",
           title: "Flowinity",
           displayName: "Troplo",
           url: "https://flowinity.com/u/Troplo"
@@ -60,7 +71,7 @@ export default {
         },*/
         {
           id: 3,
-          icon: "mdi-discord",
+          icon: "discord",
           title: "Discord",
           displayName: "@troplo",
           url: "https://discord.com/users/692259321907773460"
@@ -104,6 +115,7 @@ export default {
     }
   },
   components: {
+    DiscordLogo,
     FlowinityLogo
   }
 }

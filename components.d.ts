@@ -7,9 +7,11 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    ChipTag: typeof import('./src/components/ChipTag.vue')['default']
+    DiscordLogo: typeof import('./src/components/DiscordLogo.vue')['default']
     FlowinityLogo: typeof import('./src/components/FlowinityLogo.vue')['default']
+    FlowinityWordmark: typeof import('./src/components/FlowinityWordmark.vue')['default']
     Header: typeof import('./src/components/Header.vue')['default']
-    HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }
