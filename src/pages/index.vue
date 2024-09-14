@@ -50,8 +50,8 @@
               target="_blank"
               @click="link.click && link.click()"
             >
-              <v-icon class="mr-2" v-if="link.link"> mdi-open-in-new </v-icon>
               {{ link.name }}
+              <v-icon class="ml-2" v-if="link.link"> mdi-open-in-new </v-icon>
             </v-btn>
           </v-card>
         </div>
