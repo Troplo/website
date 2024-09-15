@@ -67,18 +67,32 @@
       </v-btn>
     </v-carousel>
     <!-- Remove padding so it's equal to the second container -->
-    <v-container id="about-me" style="padding-bottom: 0">
-      <v-card class="rounded-xl d-flex" elevation="0">
-        <v-img
-          src="/favicon.png"
-          alt="Troplo"
-          aspect-ratio="1"
-          cover
-          style="min-width: 200px"
-        />
+    <v-container
+      id="about-me"
+      class="mx-auto"
+      style="padding-bottom: 0; max-width: 50%"
+      :style="{
+        'min-width':
+          display.mobile.value && display.width.value ? '100%' : '900px'
+      }"
+    >
+      <v-card
+        class="rounded-xl"
+        :class="{ 'd-flex': !display.mobile.value || !display.width.value }"
+        elevation="0"
+      >
+        <div class="d-flex justify-center" style="background: #121212">
+          <v-img
+            src="/favicon.png"
+            alt="Troplo"
+            aspect-ratio="1"
+            cover
+            style="min-width: 200px; max-width: 200px"
+          />
+        </div>
         <div>
-          <v-card-title> Hi, I'm Troplo. </v-card-title>
-          <v-card-subtitle>
+          <v-card-title class="texet-wrap"> Hi, I'm Troplo. </v-card-title>
+          <v-card-subtitle class="text-wrap">
             I'm a full-stack web developer who has a passion for technology and
             learning.
           </v-card-subtitle>
