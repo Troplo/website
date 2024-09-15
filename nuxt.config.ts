@@ -15,6 +15,12 @@ export default defineNuxtConfig({
       })
     }
   ],
+  nitro: {
+    prerender: {
+      autoSubfolderIndex: false
+    },
+    preset: "cloudflare_pages"
+  },
   vite: {
     vue: {
       template: {
