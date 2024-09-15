@@ -1,50 +1,9 @@
 <template>
-  <v-app-bar
-    color="surface"
-    id="navbar"
-    :extension-height="announcementsStore.navbarOffset - 64"
-  >
-    <template #extension>
-      <div class="d-flex flex-column w-100">
-        <v-alert
-          v-for="banner in announcementsStore.banners"
-          :key="banner.id"
-          :value="true"
-          variant="tonal"
-          :type="banner.bannerType || undefined"
-          :icon="
-            banner.bannerType === BannerType.Error
-              ? 'mdi-alert-circle'
-              : undefined
-          "
-          tile
-          :id="`banner-${banner.id}`"
-        >
-          <strong v-if="banner.id !== 'status'">UPCOMING:</strong>
-          {{ banner.bannerText }}
-          <template #append>
-            <v-btn
-              :to="`/news/${banner.id}`"
-              size="small"
-              variant="outlined"
-              v-if="banner.id !== 'status'"
-              >Learn more</v-btn
-            >
-            <v-btn
-              v-else
-              size="small"
-              variant="outlined"
-              href="https://status.troplo.com"
-              target="_blank"
-              >Learn More</v-btn
-            >
-          </template>
-        </v-alert>
-      </div>
-    </template>
+  <v-app-bar color="surface">
+    <!-- If it's on the server, the width will be zero -->
     <v-app-bar-nav-icon
       @click.stop="sidebar = !sidebar"
-      v-if="display.mobile.value"
+      v-if="display.mobile.value && display.width.value"
     ></v-app-bar-nav-icon>
     <v-toolbar-title
       class="troplo-title"
@@ -88,13 +47,10 @@
 
 <script setup lang="ts">
 import { useDisplay } from "vuetify"
-import { onMounted, ref } from "vue"
-import { useAnnouncementsStore } from "@/stores/announcements.store"
+import { ref } from "vue"
 import { useRouter } from "vue-router"
-import { BannerType } from "@/gql/graphql"
 
 const display = useDisplay()
-const announcementsStore = useAnnouncementsStore()
 
 const sidebar = ref(false)
 const items = ref<
@@ -115,12 +71,6 @@ const items = ref<
 ])
 
 const router = useRouter()
-
-onMounted(async () => {
-  announcementsStore.banners = await announcementsStore.getAnnouncements({
-    banner: true
-  })
-})
 </script>
 
 <style scoped></style>
