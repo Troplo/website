@@ -75,6 +75,26 @@ const { data: news } = await useAsyncData(
     watch: [page]
   }
 )
+
+useHead({
+  title: "Blog - Troplo.com",
+  meta: [
+    {
+      name: "description",
+      content:
+        "Keep up to date with the latest news and announcements from Troplo."
+    },
+    {
+      property: "og:title",
+      content: "Blog - Troplo.com"
+    },
+    {
+      property: "og:description",
+      content:
+        "Keep up to date with the latest news and announcements from Troplo."
+    }
+  ]
+})
 </script>
 
 <style scoped></style>

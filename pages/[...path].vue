@@ -14,10 +14,26 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: "NotFound"
-}
+<script setup lang="ts">
+useHead({
+  title: "Not Found - Troplo.com",
+  meta: [
+    {
+      name: "description",
+      content: "The home of projects and services from Troplo."
+    },
+    {
+      property: "og:title",
+      content: "Not Found - Troplo.com"
+    },
+    {
+      property: "og:description",
+      content: "The home of projects and services from Troplo."
+    }
+  ]
+})
+
+setResponseStatus(404)
 </script>
 
 <style scoped></style>

@@ -100,7 +100,20 @@ useHead({
       property: "og:title",
       content: `${announcement.value?.title || "Announcement"} - Troplo.com`
     },
-    { property: "og:image", content: announcement.value?.image || "" }
+    { property: "og:image", content: announcement.value?.image || "" },
+    {
+      property: "og:description",
+      content:
+        announcement.value?.description || "An update from TroploServices."
+    },
+    {
+      property: "twitter:card",
+      content: "summary_large_image"
+    },
+    {
+      property: "twitter:image",
+      content: announcement.value?.image || ""
+    }
   ]
 })
 </script>

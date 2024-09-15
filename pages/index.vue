@@ -676,7 +676,7 @@ useHead({
   meta: [
     {
       name: "description",
-      content: "The home of projects and services by Troplo."
+      content: "The home of projects and services from Troplo."
     },
     {
       property: "og:title",
@@ -684,15 +684,15 @@ useHead({
     },
     {
       property: "og:image",
-      content: "https://i.flowinity.com/i/d102284d9082.png"
+      content: "https://troplo.com/favicon.png"
     },
     {
-      name: "twitter:card",
-      content: "summary_large_image"
+      property: "og:description",
+      content: "The home of projects and services from Troplo."
     },
     {
       name: "twitter:image",
-      content: "https://i.flowinity.com/i/d102284d9082.png"
+      content: "https://troplo.com/favicon.png"
     }
   ]
 })
