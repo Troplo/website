@@ -1,7 +1,6 @@
 <template>
   <div id="projects">
     <v-carousel
-      :style="`height: calc(100vh - ${announcementsStore.navbarOffset}px)`"
       hide-delimiters
       cycle
       :show-arrows="!display.mobile.value"
@@ -10,6 +9,7 @@
       <v-carousel-item
         v-for="(project, index) in carousel"
         :key="index"
+        eager
         gradient="to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)"
         :src="project.src"
         cover
@@ -118,19 +118,19 @@
       </v-card>
     </v-container>
     <v-container id="projects-list" :fluid="true">
-      <v-row>
-        <v-col
-          v-for="(project, index) in getVisible"
-          :key="index"
-          cols="12"
-          md="6"
-          lg="3"
-          xl="4"
-        >
+      <masonry-wall
+        :items="getVisible"
+        :ssr-columns="1"
+        :column-width="500"
+        :gap="16"
+        :keyMapper="(item) => item.id"
+      >
+        <template #default="{ item: project, index }">
           <v-card
             class="rounded-xl"
             elevation="8"
             :color="highlight === project.id ? '#303030' : ''"
+            :key="project.id"
           >
             <v-hover>
               <template v-slot:default="{ isHovering, props }">
@@ -211,8 +211,8 @@
               </v-btn>
             </v-card-actions>
           </v-card>
-        </v-col>
-      </v-row>
+        </template>
+      </masonry-wall>
     </v-container>
   </div>
 </template>
@@ -436,6 +436,7 @@ const projects = [
       tags[Tags.Vue],
       tags[Tags.Vuetify],
       tags[Tags.Express],
+      tags[Tags.GraphQL],
       tags[Tags.TypeScript]
     ],
     description: "The versatile online social and collaborative platform.",
@@ -481,7 +482,7 @@ const projects = [
     ]
   },
   {
-    id: 14,
+    id: 15,
     name: "Flowinity for Android",
     release: "2023",
     internalName: "flowinity-android",
@@ -622,6 +623,22 @@ const projects = [
       tags[Tags.Express]
     ],
     description: "Open source project tracking software written in Vue.js.",
+    visible: true,
+    links: []
+  },
+  {
+    id: 16,
+    name: "NextFM (OpenFM)",
+    internalName: "nextfm",
+    release: "2022",
+    tags: [
+      tags[Tags.DevelopmentHalted],
+      tags[Tags.Vue],
+      tags[Tags.Vuetify],
+      tags[Tags.Express]
+    ],
+    description:
+      "An experimental music tracking platform, similar to Last.fm that uses the Spotify API.",
     visible: true,
     links: []
   },

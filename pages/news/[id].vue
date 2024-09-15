@@ -16,8 +16,17 @@
         <v-card-title class="text-h4 text-wrap text-center">
           {{ announcement.title }}
         </v-card-title>
-        <div class="d-flex justify-center">
-          <div class="d-flex flex-column align-center">
+        <div
+          class="d-flex justify-center"
+          :class="{
+            'flex-column': display.mobile.value && display.width.value
+          }"
+        >
+          <a
+            :href="`https://flowinity.com/u/${announcement.flowinityUser?.username}`"
+            class="text-decoration-none d-flex flex-column align-center"
+            style="color: inherit"
+          >
             <v-avatar size="40">
               <v-img
                 v-if="announcement.flowinityUser?.avatar"
@@ -25,13 +34,16 @@
                 :alt="announcement.flowinityUser.username"
               />
             </v-avatar>
-            <p class="v-card-subtitle">
+            <span class="v-card-subtitle">
               {{ announcement.flowinityUser?.username }}
-            </p>
-          </div>
+            </span>
+          </a>
           <div class="ml-4">
-            <p class="v-card-subtitle">
-              {{ dayjs(announcement.createdAt).format("Do of MMMM YYYY") }}
+            <p class="v-card-subtitle text-wrap">
+              Published at
+              {{
+                dayjs(announcement.createdAt).format("hh:mm A, Do of MMMM YYYY")
+              }}
               <small
                 v-if="
                   announcement.bannerExpiry &&
@@ -70,11 +82,13 @@ import { useApolloClient } from "@vue/apollo-composable"
 import { AnnouncementDocument, type AnnouncementQuery } from "@/gql/graphql"
 import dayjs from "@/lib/dayjs"
 import mdAnnouncements from "@/lib/mdAnnouncements"
+import { useDisplay } from "vuetify"
 
 // Get the current route
 const route = useRoute()
 const id = ref<string>(route.params.id as string)
 const apollo = useApolloClient()
+const display = useDisplay()
 
 // Fetch announcement data using asyncData for SSR support
 const { data: announcement } = await useAsyncData(

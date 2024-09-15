@@ -1,7 +1,7 @@
 <template>
   <v-container max-width="1400">
     <v-skeleton-loader
-      v-if="!news"
+      v-if="!news?.items"
       :loading="true"
       class="rounded-xl mb-4"
       aspect-ratio="16/9"
@@ -10,8 +10,18 @@
       type="article"
     />
     <div v-else class="d-flex flex-column" style="gap: 12px">
+      <v-text-field
+        v-model="search"
+        label="Search"
+        outlined
+        dense
+        append-inner-icon="mdi-magnify"
+        class="rounded-xl"
+        @keydown.enter="refresh"
+        @click:append-inner="refresh"
+      />
       <v-card
-        v-for="announcement in news"
+        v-for="announcement in news.items"
         :key="announcement.id"
         class="rounded-xl"
       >
@@ -28,7 +38,9 @@
               announcement.title
             }}</v-card-title>
             <v-card-subtitle>
-              {{ dayjs(announcement.createdAt).format("Do of MMMM YYYY") }}
+              {{
+                dayjs(announcement.createdAt).format("hh:mm A, Do of MMMM YYYY")
+              }}
             </v-card-subtitle>
             <v-card-text>
               {{ announcement.description }}
@@ -45,7 +57,7 @@
         </div>
       </v-card>
       <div
-        v-if="!news.length"
+        v-if="!news.items?.length"
         class="text-h4 text-center d-flex flex-column justify-center align-center"
       >
         <v-icon size="48">mdi-information</v-icon>
@@ -54,6 +66,11 @@
           Check back later for the latest updates and announcements.
         </v-card-subtitle>
       </div>
+      <v-pagination
+        v-if="news.pager.totalPages > 1"
+        v-model="page"
+        :length="news.pager.totalPages"
+      />
     </div>
   </v-container>
 </template>
@@ -66,11 +83,21 @@ import { useDisplay } from "vuetify"
 
 const announcementsStore = useAnnouncementsStore()
 const page = ref(1)
+const search = ref("")
 const display = useDisplay()
 
-const { data: news } = await useAsyncData(
+const {
+  data: news,
+  refresh,
+  status,
+  error
+} = await useAsyncData(
   "news",
-  () => announcementsStore.getAnnouncements({ page: page.value }),
+  () =>
+    announcementsStore.getAnnouncements({
+      page: page.value,
+      search: search.value
+    }),
   {
     watch: [page]
   }

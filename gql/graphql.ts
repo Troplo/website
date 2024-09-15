@@ -26,6 +26,7 @@ export type Announcement = {
   content?: Maybe<Scalars['String']['output']>;
   createdAt: Scalars['Date']['output'];
   description: Scalars['String']['output'];
+  draft: Scalars['Boolean']['output'];
   flowinityUser?: Maybe<FlowinityUser>;
   flowinityUserId: Scalars['Int']['output'];
   id: Scalars['String']['output'];
@@ -39,6 +40,14 @@ export type AnnouncementsInput = {
   banner?: InputMaybe<Scalars['Boolean']['input']>;
   /** The page number. Ignored if banner is true. */
   page?: InputMaybe<Scalars['Int']['input']>;
+  /** The search term to filter announcements by. */
+  search?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type AnnouncementsPaginated = {
+  __typename?: 'AnnouncementsPaginated';
+  items: Array<Announcement>;
+  pager: Pager;
 };
 
 /** The type of the banner */
@@ -56,10 +65,16 @@ export type FlowinityUser = {
   username: Scalars['String']['output'];
 };
 
+export type Pager = {
+  __typename?: 'Pager';
+  totalItems: Scalars['Int']['output'];
+  totalPages: Scalars['Int']['output'];
+};
+
 export type Query = {
   __typename?: 'Query';
   announcement?: Maybe<Announcement>;
-  announcements: Array<Announcement>;
+  announcements: AnnouncementsPaginated;
   information: Scalars['String']['output'];
   status: Array<StatusMonitor>;
 };
@@ -100,7 +115,7 @@ export type AnnouncementsQueryVariables = Exact<{
 }>;
 
 
-export type AnnouncementsQuery = { __typename?: 'Query', announcements: Array<{ __typename?: 'Announcement', id: string, title: string, description: string, createdAt: any, updatedAt: any, image: string, banner: string, bannerText?: string | null, bannerExpiry?: any | null, bannerType?: BannerType | null, flowinityUserId: number }> };
+export type AnnouncementsQuery = { __typename?: 'Query', announcements: { __typename?: 'AnnouncementsPaginated', items: Array<{ __typename?: 'Announcement', id: string, title: string, description: string, createdAt: any, updatedAt: any, image: string, banner: string, bannerText?: string | null, bannerExpiry?: any | null, bannerType?: BannerType | null, flowinityUserId: number }>, pager: { __typename?: 'Pager', totalItems: number, totalPages: number } } };
 
 export type StatusPageQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -109,5 +124,5 @@ export type StatusPageQuery = { __typename?: 'Query', status: Array<{ __typename
 
 
 export const AnnouncementDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Announcement"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"announcementId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"announcement"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"announcementId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"content"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}},{"kind":"Field","name":{"kind":"Name","value":"bannerExpiry"}},{"kind":"Field","name":{"kind":"Name","value":"image"}},{"kind":"Field","name":{"kind":"Name","value":"flowinityUser"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"avatar"}}]}}]}}]}}]} as unknown as DocumentNode<AnnouncementQuery, AnnouncementQueryVariables>;
-export const AnnouncementsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Announcements"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"AnnouncementsInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"announcements"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}},{"kind":"Field","name":{"kind":"Name","value":"image"}},{"kind":"Field","name":{"kind":"Name","value":"banner"}},{"kind":"Field","name":{"kind":"Name","value":"bannerText"}},{"kind":"Field","name":{"kind":"Name","value":"bannerExpiry"}},{"kind":"Field","name":{"kind":"Name","value":"bannerType"}},{"kind":"Field","name":{"kind":"Name","value":"flowinityUserId"}}]}}]}}]} as unknown as DocumentNode<AnnouncementsQuery, AnnouncementsQueryVariables>;
+export const AnnouncementsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Announcements"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"AnnouncementsInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"announcements"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"items"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}},{"kind":"Field","name":{"kind":"Name","value":"image"}},{"kind":"Field","name":{"kind":"Name","value":"banner"}},{"kind":"Field","name":{"kind":"Name","value":"bannerText"}},{"kind":"Field","name":{"kind":"Name","value":"bannerExpiry"}},{"kind":"Field","name":{"kind":"Name","value":"bannerType"}},{"kind":"Field","name":{"kind":"Name","value":"flowinityUserId"}}]}},{"kind":"Field","name":{"kind":"Name","value":"pager"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"totalItems"}},{"kind":"Field","name":{"kind":"Name","value":"totalPages"}}]}}]}}]}}]} as unknown as DocumentNode<AnnouncementsQuery, AnnouncementsQueryVariables>;
 export const StatusPageDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"StatusPage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"status"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"status"}}]}}]}}]} as unknown as DocumentNode<StatusPageQuery, StatusPageQueryVariables>;

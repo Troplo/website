@@ -12,7 +12,11 @@
       >Troplo's Website</v-toolbar-title
     >
     <v-spacer></v-spacer>
-    <div class="d-flex mr-4" style="gap: 4px" v-if="!display.mobile.value">
+    <div
+      class="d-flex mr-4"
+      style="gap: 4px"
+      v-if="!display.mobile.value || !display.width.value"
+    >
       <v-btn
         variant="text"
         v-for="item in items"

@@ -44,6 +44,7 @@
           </v-alert>
         </div>
         <NuxtPage />
+        <Footer />
       </v-main>
     </v-app>
   </NuxtLayout>
@@ -53,6 +54,7 @@
 import "./styles/index.css"
 import { useAnnouncementsStore } from "~/stores/announcements.store"
 import { BannerType } from "~/gql/graphql"
+import Footer from "~/components/Footer.vue"
 
 const announcementsStore = useAnnouncementsStore()
 
@@ -62,7 +64,7 @@ const { data: banners } = await useAsyncData(`banners`, async () =>
 
 watchEffect(() => {
   if (banners.value) {
-    announcementsStore.banners = banners.value
+    announcementsStore.banners = banners.value.items
   }
 })
 </script>
