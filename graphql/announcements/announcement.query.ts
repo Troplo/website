@@ -6,9 +6,13 @@ export const AnnouncementQuery = gql`
       id
       title
       description
+      draft
       content
       createdAt
       updatedAt
+      banner
+      bannerType
+      bannerText
       bannerExpiry
       image
       flowinityUser {

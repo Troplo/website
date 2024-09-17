@@ -11,10 +11,23 @@
         :key="index"
         eager
         gradient="to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)"
-        :src="project.src"
         cover
         class="position-relative"
       >
+        <nuxt-img
+          :src="project.src"
+          preset="cover"
+          sizes="768px, 1920px, 2560px, 3840px"
+          media="(max-width: 600px) 100vw, (max-width: 960px) 50vw, 25vw"
+          style="
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          "
+        />
         <div
           class="d-flex flex-column align-center justify-center w-100 h-100 cursor-auto"
         >
@@ -81,14 +94,11 @@
         :class="{ 'd-flex': !display.mobile.value || !display.width.value }"
         elevation="0"
       >
-        <div class="d-flex justify-center" style="background: #121212">
-          <v-img
-            src="/favicon.png"
-            alt="Troplo"
-            aspect-ratio="1"
-            cover
-            style="min-width: 200px; max-width: 200px"
-          />
+        <div
+          class="d-flex justify-center align-center"
+          style="background: #121212"
+        >
+          <nuxt-img src="/favicon.png" alt="Troplo" width="200" height="200" />
         </div>
         <div>
           <v-card-title class="texet-wrap"> Hi, I'm Troplo. </v-card-title>
@@ -125,7 +135,7 @@
         :gap="16"
         :keyMapper="(item) => item.id"
       >
-        <template #default="{ item: project, index }">
+        <template #default="{ item: project }">
           <v-card
             class="rounded-xl"
             elevation="8"
@@ -134,37 +144,29 @@
           >
             <v-hover>
               <template v-slot:default="{ isHovering, props }">
-                <v-img
-                  style="min-height: 100px"
-                  v-bind="props"
-                  :alt="'Image of ' + project.name"
-                  :src="getImage(project.internalName)"
-                >
+                <div v-bind="props" class="position-relative">
                   <a :href="getImage(project.internalName)" target="_blank">
+                    <nuxt-img
+                      preload
+                      style="min-height: 100px; width: 100%"
+                      sizes="300px, 400px, 500px"
+                      :alt="'Image of ' + project.name"
+                      :src="getImage(project.internalName)"
+                      :id="`image-${project.id}`"
+                    >
+                    </nuxt-img>
                     <v-overlay
                       :model-value="isHovering!"
                       class="align-center justify-center"
-                      :contained="true"
                       scrim="#000000"
+                      :contained="true"
                     >
                       <v-icon size="large" color="white"
                         >mdi-open-in-new</v-icon
                       >
                     </v-overlay>
                   </a>
-                  <template #placeholder>
-                    <v-row
-                      align="center"
-                      class="fill-height ma-0"
-                      justify="center"
-                    >
-                      <v-progress-circular
-                        color="grey lighten-5"
-                        indeterminate
-                      />
-                    </v-row>
-                  </template>
-                </v-img>
+                </div>
               </template>
             </v-hover>
 
@@ -376,6 +378,10 @@ const tags = {
 const carousel = [
   {
     src: "/images/flowinity-update-comms.png",
+    size: {
+      width: 5739,
+      height: 3237
+    },
     name: "Flowinity",
     logo: FlowinityLogo,
     description: "The versatile online social and collaborative platform.",
@@ -389,6 +395,10 @@ const carousel = [
   },
   {
     src: "/images/flowforms.png",
+    size: {
+      width: 3838,
+      height: 1984
+    },
     name: "FlowForms",
     description: "The free flow chart form builder.",
     tags: [tags[Tags.New]],
@@ -412,6 +422,10 @@ const carousel = [
   name: string
   description: string
   logo?: any
+  size: {
+    width: number
+    height: number
+  }
   tags: {
     name: string
     link?: string
@@ -431,6 +445,10 @@ const projects = [
     name: "Flowinity",
     release: "2021",
     internalName: "proj01",
+    size: {
+      width: 3825,
+      height: 2006
+    },
     tags: [
       tags[Tags.Active],
       tags[Tags.Vue],
@@ -459,6 +477,10 @@ const projects = [
     name: "FlowForms",
     release: "2024",
     internalName: "flowforms",
+    size: {
+      width: 3838,
+      height: 1984
+    },
     tags: [
       tags[Tags.New],
       tags[Tags.Vue],
@@ -485,6 +507,10 @@ const projects = [
     id: 15,
     name: "Flowinity for Android",
     release: "2023",
+    size: {
+      width: 1972,
+      height: 1080
+    },
     internalName: "flowinity-android",
     tags: [tags[Tags.Active], tags[Tags.Android], tags[Tags.Kotlin]],
     description:
@@ -507,6 +533,10 @@ const projects = [
     id: 12,
     name: "Colubrina",
     internalName: "colubrina",
+    size: {
+      width: 3839,
+      height: 2017
+    },
     tags: [
       tags[Tags.Inactive],
       tags[Tags.Vue],
@@ -528,6 +558,10 @@ const projects = [
   {
     id: 11,
     name: "BetterCompass",
+    size: {
+      width: 3821,
+      height: 2013
+    },
     internalName: "compass-vue",
     release: "2022",
     tags: [
@@ -556,6 +590,10 @@ const projects = [
     id: 14,
     name: "GeoGuess",
     internalName: "geoguess",
+    size: {
+      width: 3837,
+      height: 2013
+    },
     release: "2022",
     description:
       "Contributed changes & fixes to the open source geography game GeoGuess.",
@@ -587,6 +625,10 @@ const projects = [
   {
     id: 3,
     name: "Mira",
+    size: {
+      width: 3839,
+      height: 1998
+    },
     release: "2021",
     internalName: "mira",
     tags: [tags[Tags.Inactive], tags[Tags.Vue], tags[Tags.Crystal]],
@@ -604,6 +646,10 @@ const projects = [
     id: 10,
     name: "Vixlatio",
     internalName: "vixlatio",
+    size: {
+      width: 3840,
+      height: 2035
+    },
     release: "2022",
     tags: [tags[Tags.NoLongerAffiliated], tags[Tags.Vue], tags[Tags.Express]],
     description:
@@ -614,6 +660,10 @@ const projects = [
   {
     id: 13,
     name: "Kansas",
+    size: {
+      width: 3840,
+      height: 1987
+    },
     internalName: "kansas",
     release: "2022",
     tags: [
@@ -630,6 +680,10 @@ const projects = [
     id: 16,
     name: "NextFM (OpenFM)",
     internalName: "nextfm",
+    size: {
+      width: 3838,
+      height: 1987
+    },
     release: "2022",
     tags: [
       tags[Tags.DevelopmentHalted],
@@ -646,6 +700,10 @@ const projects = [
     id: 7,
     name: "Troplo's Website",
     release: "2021",
+    size: {
+      width: 3840,
+      height: 2035
+    },
     internalName: "troplo-website",
     tags: [tags[Tags.Active], tags[Tags.Vue], tags[Tags.Vuetify]],
     description: "The website you are viewing right now.",
@@ -666,6 +724,10 @@ const projects = [
   {
     id: 1,
     name: "Kaverti",
+    size: {
+      width: 3840,
+      height: 2035
+    },
     release: "2020",
     internalName: "kaverti",
     tags: [tags[Tags.Inactive], tags[Tags.Vue], tags[Tags.Express]],
@@ -674,7 +736,30 @@ const projects = [
     visible: true,
     links: []
   }
-]
+] as {
+  id: number
+  name: string
+  release?: string
+  internalName: string
+  size: {
+    width: number
+    height: number
+  }
+  tags: {
+    name: string
+    link?: string
+    color?: string
+    icon?: string
+  }[]
+  description: string
+  visible: boolean
+  links: {
+    name: string
+    link?: string
+    click?: () => void
+    icon?: string
+  }[]
+}[]
 
 const getVisible = computed(() => projects.filter((i) => i.visible))
 

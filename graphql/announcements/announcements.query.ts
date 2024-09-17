@@ -10,6 +10,7 @@ export const AnnouncementsQuery = gql`
         createdAt
         updatedAt
         image
+        draft
         banner
         bannerText
         bannerExpiry

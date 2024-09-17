@@ -28,6 +28,49 @@
         <v-list-item-title>{{ item.title }}</v-list-item-title>
       </v-btn>
     </div>
+    <v-divider vertical v-if="userStore.user || userStore.token"></v-divider>
+    <div
+      style="width: 64px; height: 32px"
+      v-if="userStore.user || userStore.token"
+      class="d-flex justify-center align-center"
+    >
+      <template v-if="userStore.loading">
+        <v-progress-circular
+          indeterminate
+          class="mx-2 my-2"
+        ></v-progress-circular>
+      </template>
+      <v-menu offset-y v-else-if="userStore.user">
+        <template #activator="{ props }">
+          <v-btn icon size="38" v-bind="props">
+            <v-avatar size="38">
+              <v-img
+                :src="userStore.user.avatar"
+                v-if="userStore.user.avatar"
+              />
+              <TroploLogo
+                v-else
+                style="width: 20px; height: 20px"
+                gradient-start="#606060"
+                gradient-end="#606060"
+              />
+            </v-avatar>
+          </v-btn>
+        </template>
+        <v-list>
+          <v-list-item @click="router.push('/admin')" style="cursor: pointer">
+            <v-list-item-title>Admin</v-list-item-title>
+          </v-list-item>
+          <v-list-item
+            @click="userStore.logout()"
+            style="cursor: pointer"
+            base-color="red"
+          >
+            <v-list-item-title>Logout</v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-menu>
+    </div>
   </v-app-bar>
   <v-navigation-drawer
     floating
@@ -45,6 +88,7 @@
         </template>
         <v-list-item-title>{{ item.title }}</v-list-item-title>
       </v-list-item>
+      <div id="sidebar-options" />
     </v-list>
   </v-navigation-drawer>
 </template>
@@ -53,8 +97,10 @@
 import { useDisplay } from "vuetify"
 import { ref } from "vue"
 import { useRouter } from "vue-router"
+import { useUserStore } from "~/stores/user.store"
 
 const display = useDisplay()
+const userStore = useUserStore()
 
 const sidebar = ref(false)
 const items = ref<

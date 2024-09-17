@@ -13,8 +13,21 @@ export default defineNuxtConfig({
         // @ts-expect-error
         config.plugins.push(vuetify({ autoImport: true }))
       })
-    }
+    },
+    "@nuxt/image"
   ],
+  image: {
+    format: ["webp"],
+    presets: {
+      cover: {
+        modifiers: {
+          fit: "cover",
+          format: "webp",
+          quality: 80
+        }
+      }
+    }
+  },
   nitro: {
     prerender: {
       autoSubfolderIndex: false
