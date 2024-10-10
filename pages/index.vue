@@ -26,6 +26,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            opacity: 0.5;
           "
         />
         <div
@@ -82,8 +83,8 @@
     <!-- Remove padding so it's equal to the second container -->
     <v-container
       id="about-me"
-      class="mx-auto"
-      style="padding-bottom: 0; max-width: 50%"
+      class="mx-auto d-flex flex-column"
+      style="padding-bottom: 0; max-width: 50%; gap: 16px"
       :style="{
         'min-width':
           display.mobile.value && display.width.value ? '100%' : '900px'
@@ -126,6 +127,7 @@
           </div>
         </div>
       </v-card>
+      <NewsItemBannerHome style="height: 300px" />
     </v-container>
     <v-container id="projects-list" :fluid="true">
       <masonry-wall
@@ -225,6 +227,7 @@ import { useDisplay } from "vuetify"
 import { useAnnouncementsStore } from "@/stores/announcements.store"
 import ChipTag from "@/components/ChipTag.vue"
 import FlowinityLogo from "@/components/FlowinityLogo.vue"
+import NewsItemBannerHome from "~/components/Announcements/NewsItemBannerHome.vue"
 
 const display = useDisplay()
 

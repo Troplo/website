@@ -1,4 +1,31 @@
 <template>
+  <div
+    v-if="!display.mobile.value"
+    style="
+      z-index: 9999;
+      position: fixed;
+      top: 64px;
+      left: 256px;
+      right: 0;
+      background: #181818;
+    "
+  >
+    <AppBanner
+      v-if="announcement?.banner"
+      :banner="{
+        ...announcement,
+        ...editable
+      }"
+      :preview="true"
+      :key="
+        editable.bannerText ||
+        '' + editable.bannerType ||
+        '' + editable.bannerIcon ||
+        ''
+      "
+    />
+  </div>
+
   <Banner
     :announcement="{
       ...announcement,
@@ -33,31 +60,27 @@
         v-model="editable.draft"
         label="Draft"
         color="primary"
-        variant="inset"
+        inset
         @update:model-value="() => (changes = true)"
       />
-      <div>
-        <v-tooltip location="top" activator="parent">
-          Not implemented yet.
-        </v-tooltip>
-        <v-switch
-          label="Publish to Flowinity"
-          color="primary"
-          variant="inset"
-          :disabled="true"
-        />
-      </div>
+      <v-switch
+        label="Show on homepage (Troplo & Flowinity)"
+        color="primary"
+        inset
+        v-model="editable.showOnMainPage"
+        @update:model-value="() => (changes = true)"
+      />
       <v-switch
         v-model="editable.banner"
         label="Banner"
         color="primary"
-        variant="inset"
+        inset
         @update:model-value="() => (changes = true)"
       />
       <v-select
         :disabled="!editable.banner"
         v-model="editable.bannerType"
-        :items="['error', 'warning', 'info', 'success']"
+        :items="['error', 'warning', 'info', 'success', 'none']"
         label="Banner Type"
         variant="outlined"
         @update:model-value="() => (changes = true)"
@@ -87,6 +110,13 @@
         placeholder="https://i.flowinity.com/i/d102284d9082.png (optional)"
         @update:model-value="() => (changes = true)"
       />
+      <v-text-field
+        v-model="editable.bannerIcon"
+        label="Banner Icon"
+        variant="outlined"
+        placeholder="mdi-information (optional)"
+        @update:model-value="() => (changes = true)"
+      />
       <small>
         The banner will be displayed on all pages on troplo.com at the top.
       </small>
@@ -97,6 +127,7 @@
           ...announcement,
           ...editable
         }"
+        :admin="true"
       />
     </div>
     <div
@@ -128,6 +159,8 @@ import {
 } from "~/gql/graphql"
 import Banner from "~/components/Announcements/Banner.vue"
 import NewsItem from "~/components/Announcements/NewsItem.vue"
+import AppBanner from "~/components/Announcements/AppBanner.vue"
+import { useDisplay } from "vuetify"
 
 const announcementsStore = useAnnouncementsStore()
 const apolloClient = useApolloClient()
@@ -135,6 +168,7 @@ const announcement = ref<AnnouncementQuery["announcement"] | null>(null)
 const loading = ref(false)
 const route = useRoute()
 const changes = ref(false)
+const display = useDisplay()
 
 const id = computed(() => route.params.id)
 
@@ -147,7 +181,9 @@ const editable = ref({
   bannerType: BannerType.Error as BannerType | null | undefined,
   bannerExpiry: null as string | null | undefined,
   bannerText: "" as string | null | undefined,
-  image: null as string | null | undefined
+  image: null as string | null | undefined,
+  bannerIcon: "mdi-information" as string | null | undefined,
+  showOnMainPage: false
 })
 
 async function getAnnouncement() {
@@ -170,6 +206,8 @@ async function getAnnouncement() {
     editable.value.bannerExpiry = data.announcement.bannerExpiry
     editable.value.bannerText = data.announcement.bannerText
     editable.value.image = data.announcement.image
+    editable.value.bannerIcon = data.announcement.bannerIcon
+    editable.value.showOnMainPage = data.announcement.showOnMainPage
   } finally {
     loading.value = false
   }
@@ -193,7 +231,10 @@ async function updateAnnouncement() {
             editable.value.bannerExpiry
               ? editable.value.bannerExpiry + ":00Z"
               : editable.value.bannerExpiry || null,
-          bannerText: editable.value.bannerText || ""
+          bannerText: editable.value.bannerText || "",
+          image: editable.value.image,
+          showOnMainPage: editable.value.showOnMainPage,
+          bannerIcon: editable.value.bannerIcon
         }
       }
     })
@@ -223,7 +264,10 @@ async function updateAnnouncement() {
             editable.value.bannerExpiry
               ? editable.value.bannerExpiry + ":00Z"
               : editable.value.bannerExpiry || null,
-          bannerText: editable.value.bannerText || ""
+          bannerText: editable.value.bannerText || "",
+          image: editable.value.image,
+          showOnMainPage: editable.value.showOnMainPage,
+          bannerIcon: editable.value.bannerIcon
         }
       }
     })

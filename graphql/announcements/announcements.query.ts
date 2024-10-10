@@ -16,6 +16,8 @@ export const AnnouncementsQuery = gql`
         bannerExpiry
         bannerType
         flowinityUserId
+        bannerIcon
+        showOnMainPage
       }
       pager {
         totalItems

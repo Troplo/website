@@ -34,17 +34,19 @@
               {{
                 dayjs(announcement.createdAt).format("hh:mm A, Do of MMMM YYYY")
               }}
-              <small
-                v-if="
-                  announcement.bannerExpiry &&
-                  dayjs(announcement.bannerExpiry).isAfter(dayjs())
-                "
-              >
-                (Expires {{ dayjs(announcement.bannerExpiry).fromNow() }})
-              </small>
-              <small v-else-if="announcement.bannerExpiry" class="text-red">
-                (Expired {{ dayjs(announcement.bannerExpiry).fromNow() }})
-              </small>
+              <template v-if="admin">
+                <small
+                  v-if="
+                    announcement.bannerExpiry &&
+                    dayjs(announcement.bannerExpiry).isAfter(dayjs())
+                  "
+                >
+                  (Expires {{ dayjs(announcement.bannerExpiry).fromNow() }})
+                </small>
+                <small v-else-if="announcement.bannerExpiry" class="text-red">
+                  (Expired {{ dayjs(announcement.bannerExpiry).fromNow() }})
+                </small>
+              </template>
             </p>
             <v-divider class="my-2" />
             <p
@@ -81,6 +83,7 @@ defineProps<{
     | null
     | undefined
     | AnnouncementQuery["announcement"]
+  admin?: boolean
 }>()
 </script>
 

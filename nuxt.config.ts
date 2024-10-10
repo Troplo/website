@@ -48,5 +48,14 @@ export default defineNuxtConfig({
         }
       }
     }
+  },
+  // do not render /admin on server
+  routeRules: {
+    "/admin": {
+      ssr: false
+    },
+    "/admin/**": {
+      ssr: false
+    }
   }
 })

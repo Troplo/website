@@ -1,5 +1,6 @@
 import { defineStore } from "pinia"
 import {
+  AnnouncementDocument,
   AnnouncementsDocument,
   type AnnouncementsInput,
   type AnnouncementsQuery
@@ -18,6 +19,14 @@ export const useAnnouncementsStore = defineStore("announcements", () => {
       variables: { input }
     })
     return data.announcements
+  }
+
+  async function getAnnouncement(id: string | null, showOnMainPage?: boolean) {
+    const { data } = await apolloClient.client.query({
+      query: AnnouncementDocument,
+      variables: { id, showOnMainPage }
+    })
+    return data.announcement
   }
 
   const navbarOffset = ref(64)
@@ -42,6 +51,7 @@ export const useAnnouncementsStore = defineStore("announcements", () => {
   return {
     banners,
     getAnnouncements,
-    navbarOffset
+    navbarOffset,
+    getAnnouncement
   }
 })

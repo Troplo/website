@@ -1,8 +1,8 @@
 import gql from "graphql-tag"
 
 export const AnnouncementQuery = gql`
-  query Announcement($announcementId: String!) {
-    announcement(id: $announcementId) {
+  query Announcement($announcementId: String, $showOnMainPage: Boolean) {
+    announcement(id: $announcementId, showOnMainPage: $showOnMainPage) {
       id
       title
       description
@@ -15,6 +15,8 @@ export const AnnouncementQuery = gql`
       bannerText
       bannerExpiry
       image
+      bannerIcon
+      showOnMainPage
       flowinityUser {
         username
         avatar
