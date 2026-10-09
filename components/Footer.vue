@@ -5,8 +5,7 @@
     absolute
   >
     <small
-      >&copy; 2024 Troplo. Flowinity, and FlowForms are copyrighted material of
-      TroploServices.<br />All other trademarks are the property of their respective owners.<br />
+      >&copy; 2026 Troplo & Flowinity.<br />
       Flowinity
       <a href="https://flowinity.com/policies/privacy" target="_blank"
         >Privacy Policy</a

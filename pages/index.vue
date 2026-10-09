@@ -80,7 +80,6 @@
         <v-icon>mdi-arrow-down</v-icon>
       </v-btn>
     </v-carousel>
-    <!-- Remove padding so it's equal to the second container -->
     <v-container
       id="about-me"
       class="mx-auto d-flex flex-column"
@@ -139,7 +138,7 @@
       >
         <template #default="{ item: project }">
           <v-card
-            class="rounded-xl"
+            class="rounded-xl project-card"
             elevation="8"
             :color="highlight === project.id ? '#303030' : ''"
             :key="project.id"
@@ -150,7 +149,12 @@
                   <a :href="getImage(project.internalName)" target="_blank">
                     <nuxt-img
                       preload
-                      style="min-height: 100px; width: 100%"
+                      style="
+                        min-height: 100px;
+                        width: 100%;
+                        transition: transform 0.3s ease;
+                      "
+                      :style="isHovering ? 'transform: scale(1.02);' : ''"
                       sizes="300px, 400px, 500px"
                       :alt="'Image of ' + project.name"
                       :src="getImage(project.internalName)"
@@ -217,6 +221,27 @@
           </v-card>
         </template>
       </masonry-wall>
+
+      <v-fade-transition hide-on-leave>
+        <v-btn
+          @click="showMore = true"
+          v-if="!showMore"
+          block
+          variant="tonal"
+          class="my-4"
+        >
+          Show More
+        </v-btn>
+        <v-btn
+          @click="showMore = false"
+          v-else
+          block
+          variant="tonal"
+          class="my-4"
+        >
+          Show Less
+        </v-btn>
+      </v-fade-transition>
     </v-container>
   </div>
 </template>
@@ -232,6 +257,7 @@ import NewsItemBannerHome from "~/components/Announcements/NewsItemBannerHome.vu
 const display = useDisplay()
 
 const highlight = ref<number | null>(null)
+const showMore = ref(false)
 
 enum Tags {
   Active,
@@ -253,7 +279,11 @@ enum Tags {
   Linux,
   ReverseEngineering,
   Networking,
-  REST
+  REST,
+  CPP,
+  GameModding,
+  CSharp,
+  Lua
 }
 
 const announcementsStore = useAnnouncementsStore()
@@ -367,6 +397,26 @@ const tags = {
     name: "REST & Web APIs",
     icon: "mdi-web",
     color: "blue"
+  },
+  [Tags.CPP]: {
+    name: "C++",
+    icon: "mdi-language-cpp",
+    color: "blue"
+  },
+  [Tags.Lua]: {
+    name: "Lua",
+    icon: "mdi-language-lua",
+    color: "#00e8ff"
+  },
+  [Tags.GameModding]: {
+    name: "Game Modding",
+    icon: "mdi-gamepad",
+    color: "purple"
+  },
+  [Tags.CSharp]: {
+    name: "C#",
+    icon: "mdi-language-csharp",
+    color: "green"
   }
 } as Record<
   Tags,
@@ -379,6 +429,31 @@ const tags = {
 >
 
 const carousel = [
+  {
+    src: "/images/tntng.png",
+    size: {
+      width: 3838,
+      height: 1984
+    },
+    name: "NexusTools",
+    description:
+      "A mod loader, mod manager, and modding framework for the Watch_Dogs game franchise with over 50K+ downloads.",
+    tags: [tags[Tags.New]],
+    links: [
+      {
+        name: "Learn More",
+        click: () => {
+          scrollToProjects()
+          setTimeout(() => {
+            highlight.value = 17
+          }, 500)
+          setTimeout(() => {
+            highlight.value = null
+          }, 1500)
+        }
+      }
+    ]
+  },
   {
     src: "/images/flowinity-update-comms.png",
     size: {
@@ -471,6 +546,52 @@ const projects = [
       {
         name: "GitHub",
         link: "https://github.com/Flowinity/Flowinity",
+        icon: "mdi-github"
+      }
+    ]
+  },
+  {
+    id: 17,
+    name: "NexusTools",
+    release: "2026",
+    internalName: "tnt",
+    size: {
+      width: 100,
+      height: 100
+    },
+    tags: [tags[Tags.CPP], tags[Tags.Lua], tags[Tags.GameModding]],
+    description:
+      "A mod loader, mod manager, and modding framework for the Watch_Dogs game franchise with over 50K+ downloads.",
+    visible: true,
+    links: [
+      {
+        name: "Mod Page",
+        link: "https://www.nexusmods.com/watchdogs/mods/491",
+        icon: "mdi-download"
+      },
+      {
+        name: "Website",
+        link: "https://wd.troplo.com",
+        icon: "mdi-web"
+      }
+    ]
+  },
+  {
+    id: 18,
+    name: "NexusTools Multiplayer",
+    release: "2026",
+    internalName: "tntmp",
+    size: {
+      width: 100,
+      height: 100
+    },
+    tags: [tags[Tags.CPP], tags[Tags.CSharp], tags[Tags.GameModding]],
+    description: "A reimplementation of the Watch_Dogs 1 online game servers.",
+    visible: true,
+    links: [
+      {
+        name: "GitHub",
+        link: "https://github.com/Troplo/NexusToolsMultiplayerServer",
         icon: "mdi-github"
       }
     ]
@@ -636,7 +757,7 @@ const projects = [
     internalName: "mira",
     tags: [tags[Tags.Inactive], tags[Tags.Vue], tags[Tags.Crystal]],
     description: "EPUB reader written in Crystal and Vue.js.",
-    visible: true,
+    visible: false,
     links: [
       {
         name: "GitHub",
@@ -657,7 +778,7 @@ const projects = [
     tags: [tags[Tags.NoLongerAffiliated], tags[Tags.Vue], tags[Tags.Express]],
     description:
       "Developer for Vixlatio, a blazing fast gaming platform that is powered by the creativity of its users.",
-    visible: true,
+    visible: false,
     links: []
   },
   {
@@ -676,7 +797,7 @@ const projects = [
       tags[Tags.Express]
     ],
     description: "Open source project tracking software written in Vue.js.",
-    visible: true,
+    visible: false,
     links: []
   },
   {
@@ -696,7 +817,7 @@ const projects = [
     ],
     description:
       "An experimental music tracking platform, similar to Last.fm that uses the Spotify API.",
-    visible: true,
+    visible: false,
     links: []
   },
   {
@@ -764,7 +885,9 @@ const projects = [
   }[]
 }[]
 
-const getVisible = computed(() => projects.filter((i) => i.visible))
+const getVisible = computed(() =>
+  projects.filter((i) => i.visible || showMore.value)
+)
 
 const getImage = (image: string) => {
   return `/images/${image}.png`
@@ -808,5 +931,31 @@ useHead({
   opacity: 1 !important;
   pointer-events: inherit !important;
   user-select: inherit !important;
+}
+
+:deep(.masonry-wall) {
+  align-items: flex-start !important;
+}
+
+.project-card {
+  animation: fadeInUp 0.4s ease-out forwards;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 </style>
