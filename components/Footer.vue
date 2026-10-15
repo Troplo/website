@@ -16,7 +16,7 @@
       v-if="display.width.value && !display.mobile.value"
       aria-label="Troplo icon"
       title="Troplo icon"
-      style="width: 30px"
+      style="width: 20px"
       gradient-start="#303030"
       gradient-end="#303030"
     />
